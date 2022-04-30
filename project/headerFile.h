@@ -1,0 +1,2 @@
+/*only main*/
+int main();
