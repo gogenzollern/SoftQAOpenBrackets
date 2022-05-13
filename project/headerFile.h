@@ -1,2 +1,0 @@
-/*only main*/
-int main();
