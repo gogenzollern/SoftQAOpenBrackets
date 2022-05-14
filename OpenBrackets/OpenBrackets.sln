@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.32106.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenBrackets", "OpenBrackets.vcxproj", "{3C7E1E93-099D-46DB-81CC-A6239D98391E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_openBrackets", "..\Test_openBrackets\Test_openBrackets.vcxproj", "{BD078F71-C123-478C-B104-CFC4A4ED0D07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{3C7E1E93-099D-46DB-81CC-A6239D98391E}.Release|x64.Build.0 = Release|x64
 		{3C7E1E93-099D-46DB-81CC-A6239D98391E}.Release|x86.ActiveCfg = Release|Win32
 		{3C7E1E93-099D-46DB-81CC-A6239D98391E}.Release|x86.Build.0 = Release|Win32
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Debug|x64.ActiveCfg = Debug|x64
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Debug|x64.Build.0 = Debug|x64
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Debug|x86.ActiveCfg = Debug|Win32
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Debug|x86.Build.0 = Debug|Win32
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Release|x64.ActiveCfg = Release|x64
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Release|x64.Build.0 = Release|x64
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Release|x86.ActiveCfg = Release|Win32
+		{BD078F71-C123-478C-B104-CFC4A4ED0D07}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
