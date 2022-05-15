@@ -112,6 +112,16 @@ void dfs_output(vector<Node>& tree, int currentNode);
 */
 void deleteOldNodes(vector<Node>& tree);
 
+/*! Вывести сообщение об ошибке
+    \param[in] error обнаруженная ошибка
+*/
+bool crashOutput(ErrorType error);
+
+/*! Вывести сообщение об ошибке
+    \param[in] error обнаруженная ошибка
+*/
+bool crashOutput(ErrorType error);
+
 /*! Ввести заданное дерево разбора выражений
     \param[in\out] tree дерево разбора выражений
     \param[in\out] root индекс корня дерева разбора выражений
