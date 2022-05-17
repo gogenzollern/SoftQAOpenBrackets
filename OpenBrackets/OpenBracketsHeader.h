@@ -41,6 +41,20 @@ struct Node
         this->parent = secondChild;
         this->value = value;
     }
+
+    //!> Оператор сравнения вершин на равенство
+    bool operator == (const Node& other) const
+    {
+        bool isEqual = false;
+
+        if (this->secondChild == other.secondChild && 
+            this->firstChild == other.firstChild && 
+            this->parent == other.parent && 
+            this->value == other.value)
+            isEqual = true;
+
+        return isEqual;
+    }
 };
 
 //! Типы ошибок 
@@ -143,7 +157,7 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root);
     \param[in] rootOfSecondTree - индекс корневого узла второго дерева
     \return true - если деревья совпадают, false - если деревья разные
 */
-bool isEqualTrees(vector<Node>& firstTree, int& rootOfFirstTree, vector<Node>& secondTree, int& rootOfSecondTree);
+bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> secondTree, int rootOfSecondTree);
 
 /*! Ввести заданное дерево разбора выражений
     \param[in\out] tree - дерево разбора выражений
