@@ -55,3 +55,27 @@ bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> seco
 
     return isEqualTrees;
 }
+
+//! Раскрыть скобки в заданном выражении
+void openBrackets(vector<Node>&tree, int currentNode)
+{
+
+    // Если у текущего узла дерева существует первый ребёнок
+    if (tree[currentNode].firstChild != NotExist)
+    {
+        openBrackets(tree, tree[currentNode].firstChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно первого ребёнка
+    }
+    
+    // Если у текущего узла дерева существует второй ребёнок
+    if (tree[currentNode].secondChild != NotExist) 
+    {
+        openBrackets(tree, tree[currentNode].secondChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно второго ребёнка
+    }
+    
+    // Если текущий узел является операцией умножения или побитового умножения
+        // Перестроить часть дерева относящуюся к текущему узлу
+
+        // Если после перестройки куска дерева текущий узел не является операцией умножения или побитового умножения
+            // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно текущего узла
+
+}
