@@ -27,9 +27,19 @@ struct Node
     //!> Конструктор узла дерева по умолчанию
     Node()
     {
-        secondChild = NotExist;
-        firstChild = NotExist;
-        parent = NotExist;
+        this->secondChild = NotExist;
+        this->firstChild = NotExist;
+        this->parent = NotExist;
+        this->value = "";
+    }
+
+    //!> Конструктор при явной инициализации
+    Node(int parent, int firstChild, int secondChild, string value)
+    {
+        this->secondChild = secondChild;
+        this->firstChild = firstChild;
+        this->parent = secondChild;
+        this->value = value;
     }
 };
 
@@ -88,7 +98,6 @@ enum ErrorType
     INVALID_NUMBER_OF_NODES
 };
 
-
 /*! Раскрыть скобки в заданном выражении
     \param[in] currentNode - индекс узла дерева с которого следует раскрывать скобки
     \param[in\out] tree - дерево разбора выражений
@@ -134,7 +143,7 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root);
     \param[in] rootOfSecondTree - индекс корневого узла второго дерева
     \return true - если деревья совпадают, false - если деревья разные
 */
-bool isEqualTrees(const vector<Node>& firstTree, const int& rootOfFirstTree, const vector<Node>& secondTree, const int& rootOfSecondTree);
+bool isEqualTrees(vector<Node>& firstTree, int& rootOfFirstTree, vector<Node>& secondTree, int& rootOfSecondTree);
 
 /*! Ввести заданное дерево разбора выражений
     \param[in\out] tree - дерево разбора выражений
