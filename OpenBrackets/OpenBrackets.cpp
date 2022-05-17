@@ -39,11 +39,15 @@ bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> seco
     // Если корни деревьев совпадают, то считать, что они равны
     if (rootOfFirstTree == rootOfSecondTree) isEqualRoots = true;
 
+    // Если размеры деревьев не совпадают, считать что их вершины не совпадают
+    if (firstTree.size() != secondTree.size()) isEqualContent = false;
+
     // Для каждой вершины первого дерева и пока предыдущщие вершины совпадают
     for (int i = 0; i < firstTree.size() && isEqualContent; i++)
     {
         // Если соответствующая вершина второго дерева не идентична, то считать что вершины вершины деревьев не совпадают
         if (!(firstTree[i] == secondTree[i])) isEqualContent = false;
+
     }
 
     // Если корни деревьев и верщины совпадают, то считать что деревья равны
