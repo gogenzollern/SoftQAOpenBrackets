@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{BD078F71-C123-478C-B104-CFC4A4ED0D07}</ProjectGuid>
+    <ProjectGuid>{2F8CD816-DC70-4A21-A970-574AEBC8CE4C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>TestopenBrackets</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -77,7 +77,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)OpenBrackets;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -100,7 +100,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)OpenBrackets\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenBrackets.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -171,7 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenBrackets\OpenBrackets.vcxproj">
-      <Project>{3c7e1e93-099d-46db-81cc-a6239d98391e}</Project>
+      <Project>{eb4a1ea3-fda3-4369-a79f-763a64ca0f4b}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

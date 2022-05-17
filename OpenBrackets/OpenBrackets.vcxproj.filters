@@ -21,7 +21,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenBracketsHeader.h">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

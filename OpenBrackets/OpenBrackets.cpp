@@ -1,6 +1,5 @@
 ﻿#include <iostream>
 #include <vector>
-#include <algorithm>
 #include <fstream>
 
 #include "OpenBracketsHeader.h"
@@ -60,17 +59,17 @@ bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> seco
 void openBrackets(vector<Node>&tree, int currentNode)
 {
 
-    // Если у текущего узла дерева существует первый ребёнок
-    if (tree[currentNode].firstChild != NotExist)
-    {
-        openBrackets(tree, tree[currentNode].firstChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно первого ребёнка
-    }
-    
-    // Если у текущего узла дерева существует второй ребёнок
-    if (tree[currentNode].secondChild != NotExist) 
-    {
-        openBrackets(tree, tree[currentNode].secondChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно второго ребёнка
-    }
+    //// Если у текущего узла дерева существует первый ребёнок
+    //if (tree[currentNode].firstChild != NotExist)
+    //{
+    //    openBrackets(tree, tree[currentNode].firstChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно первого ребёнка
+    //}
+    //
+    //// Если у текущего узла дерева существует второй ребёнок
+    //if (tree[currentNode].secondChild != NotExist) 
+    //{
+    //    openBrackets(tree, tree[currentNode].secondChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно второго ребёнка
+    //}
     
     // Если текущий узел является операцией умножения или побитового умножения
         // Перестроить часть дерева относящуюся к текущему узлу
