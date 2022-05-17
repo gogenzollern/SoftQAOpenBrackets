@@ -12,6 +12,7 @@ namespace TestopenBrackets
 		
 		TEST_METHOD(TestMethod1)
 		{
+
 		}
 	};
 }
