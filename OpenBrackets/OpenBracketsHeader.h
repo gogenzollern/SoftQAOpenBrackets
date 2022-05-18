@@ -160,6 +160,11 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root);
 */
 bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> secondTree, int rootOfSecondTree);
 
+/*! Заполнить входное дерево до максимального размера
+    \param[in\out] tree - дерево разбора выражений
+*/
+void initializeFullTree(vector<Node>& inputTree);
+
 /*! Ввести заданное дерево разбора выражений
     \param[in\out] tree - дерево разбора выражений
     \param[in\out] root - индекс корня дерева разбора выражений
