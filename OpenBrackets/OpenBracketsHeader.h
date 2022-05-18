@@ -27,18 +27,19 @@ struct Node
     //!> Конструктор узла дерева по умолчанию
     Node()
     {
-        this->secondChild = NotExist;
-        this->firstChild = NotExist;
         this->parent = NotExist;
-        this->value = "";
+        this->firstChild = NotExist;
+        this->secondChild = NotExist;
+        this->value = "\0";
     }
 
     //!> Конструктор при явной инициализации
     Node(int parent, int firstChild, int secondChild, string value)
     {
-        this->secondChild = secondChild;
+
+        this->parent = parent;
         this->firstChild = firstChild;
-        this->parent = secondChild;
+        this->secondChild = secondChild;
         this->value = value;
     }
 
