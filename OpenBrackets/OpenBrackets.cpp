@@ -55,6 +55,15 @@ bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> seco
     return isEqualTrees;
 }
 
+// Заполнить входное дерево до максимального размера
+void initializeFullTree(vector<Node>& inputTree)
+{
+    for (int i = inputTree.size() - 1; i < MaxSize - 1; i++)
+    {
+        inputTree.push_back(Node());
+    }
+}
+
 //! Раскрыть скобки в заданном выражении
 void openBrackets(vector<Node>&tree, int currentNode)
 {
