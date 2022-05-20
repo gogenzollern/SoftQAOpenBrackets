@@ -20,7 +20,6 @@ int main()
 
     dfs_output(tree, root); // размножает вершины так, чтобы не было циклов
 
-    //lazy propogation - когда вместо копирования сразу сначала подвес на вершину а потом уже ее размножение
     // стиратель старых связей и вершин (если сын для отца не сын - то его выкидываем и наоборот)
     deleteOldNodes(tree);
 
@@ -29,7 +28,7 @@ int main()
     return 0;
 }
 
-// Сравнить два дерева между собой
+//! Сравнить два дерева между собой
 bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> secondTree, int rootOfSecondTree)
 {
     bool isEqualTrees = false; // Считать, что деревья не равны между собой
@@ -56,7 +55,7 @@ bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> seco
     return isEqualTrees;
 }
 
-// Заполнить входное дерево до максимального размера
+//! Заполнить входное дерево до максимального размера
 void initializeFullTree(vector<Node>& inputTree)
 {
     for (int i = inputTree.size() - 1; i < MaxSize - 1; i++)
