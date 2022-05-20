@@ -233,3 +233,32 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
         }
     return;
 }
+
+//! Ввести заданное дерево разбора выражений
+bool inputTree(vector<Node>& tree, int& root)
+{
+    int size;
+    cin >> size;
+
+    for (int i = 0; i < size; ++i) {
+        Node currentNode;
+        int id;
+        cin >> id;
+        cin >> currentNode.parent;
+        cin >> currentNode.value;
+        tree[id] = currentNode;
+
+        if (currentNode.parent == NotExist)
+        {
+            root = id;
+        }
+        else
+        {
+            if (tree[currentNode.parent].firstChild == NotExist)
+                tree[currentNode.parent].firstChild = id;
+            else
+                tree[currentNode.parent].secondChild = id;
+        }
+    }
+}
+
