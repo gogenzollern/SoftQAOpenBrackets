@@ -68,24 +68,31 @@ void initializeFullTree(vector<Node>& inputTree)
 void openBrackets(vector<Node>&tree, int currentNode)
 {
 
-    //// Если у текущего узла дерева существует первый ребёнок
-    //if (tree[currentNode].firstChild != NotExist)
-    //{
-    //    openBrackets(tree, tree[currentNode].firstChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно первого ребёнка
-    //}
-    //
-    //// Если у текущего узла дерева существует второй ребёнок
-    //if (tree[currentNode].secondChild != NotExist) 
-    //{
-    //    openBrackets(tree, tree[currentNode].secondChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно второго ребёнка
-    //}
+    // Если у текущего узла дерева существует первый ребёнок
+    if (tree[currentNode].firstChild != NotExist)
+    {
+        openBrackets(tree, tree[currentNode].firstChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно первого ребёнка
+    }
     
-    // Если текущий узел является операцией умножения или побитового умножения
+    // Если у текущего узла дерева существует второй ребёнок
+    if (tree[currentNode].secondChild != NotExist) 
+    {
+        openBrackets(tree, tree[currentNode].secondChild); // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно второго ребёнка
+    }
+    
+     // Если текущий узел является операцией умножения или побитового умножения
+    if (tree[currentNode].value == "*" || tree[currentNode].value == "&")
+    {
         // Перестроить часть дерева относящуюся к текущему узлу
+        replaceTree(tree, currentNode, tree[currentNode].value);
 
         // Если после перестройки куска дерева текущий узел не является операцией умножения или побитового умножения
-            // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно текущего узла
-
+        if (tree[currentNode].value != "*" && tree[currentNode].value != "&")
+        {
+            //  Раскрыть скобки у дерева, спускаясь вниз по нему, относительно текущего узла
+            openBrackets(tree, currentNode);
+        }
+    }
 }
 
 //! Перестроить часть дерева ниже текущего узла в соответствии с операцией
