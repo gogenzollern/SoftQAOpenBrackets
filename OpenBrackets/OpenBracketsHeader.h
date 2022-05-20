@@ -27,16 +27,15 @@ struct Node
     //!> Конструктор узла дерева по умолчанию
     Node()
     {
-        this->parent = NotExist;
-        this->firstChild = NotExist;
-        this->secondChild = NotExist;
-        this->value = "\0";
+        this->parent = NotExist; // Считать, что узел-родитель не существует
+        this->firstChild = NotExist; // Считать, что узел-первый ребёнок не существует
+        this->secondChild = NotExist; // Считать, что узел-второй ребёнок не существует
+        this->value = "\0"; // Считать, что у узла отсутствует значение
     }
 
     //!> Конструктор при явной инициализации
     Node(int parent, int firstChild, int secondChild, string value)
     {
-
         this->parent = parent;
         this->firstChild = firstChild;
         this->secondChild = secondChild;
@@ -46,13 +45,14 @@ struct Node
     //!> Оператор сравнения вершин на равенство
     bool operator == (const Node& other) const
     {
-        bool isEqual = false;
-
+        bool isEqual = false; // Считать, что узлы не равны между собой
+       
+        // Если все поля узлов совпадают
         if (this->secondChild == other.secondChild && 
             this->firstChild == other.firstChild && 
             this->parent == other.parent && 
             this->value == other.value)
-            isEqual = true;
+            isEqual = true; // Считать, что узлы равны между собой
 
         return isEqual;
     }
