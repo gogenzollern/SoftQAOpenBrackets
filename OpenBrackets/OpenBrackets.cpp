@@ -300,3 +300,53 @@ void deleteOldNodes(vector<Node>& tree)
         }
     }
 }
+
+//! Устранить в дереве циклы обойдя дерево в глубину относительно текущего узла
+void dfs_output(vector<Node>& tree, int currentNode)
+{
+
+    // Если первый ребёнок не существует
+    if (tree[currentNode].firstChild != NotExist)
+    {
+        // Если отец первого ребёнка не текущий узел
+        if (tree[tree[currentNode].firstChild].parent != currentNode) 
+        {
+            // Создаём нового ребёнка
+            Node newNode = tree[tree[currentNode].firstChild];
+
+            // Записываем текущий узел как отца
+            newNode.parent = currentNode;
+            // Добавляем в дерево
+            tree.push_back(newNode);
+
+            // Привязываем к текущему узлу
+            tree[currentNode].firstChild = tree.size() - 1;
+        }
+
+        // Устранить образовавшиеся в дереве циклы, спускаясь вниз относительно первого ребёнка
+        dfs_output(tree, tree[currentNode].firstChild);
+    }
+
+    // Если второй ребёнок не существует
+    if (tree[currentNode].secondChild != NotExist)
+    {
+        // Если отец второго ребёнка не текущий узел
+        if (tree[tree[currentNode].secondChild].parent != currentNode)
+        {
+            // Создаём нового ребёнка
+            Node newNode = tree[tree[currentNode].secondChild];
+
+            // Записываем текущий узел как отца
+            newNode.parent = currentNode;
+
+            // Добавляем в дерево
+            tree.push_back(newNode);
+
+            // Привязываем к текущему узлу
+            tree[currentNode].secondChild = tree.size() - 1;
+        }
+
+        // Устранить образовавшиеся в дереве циклы, спускаясь вниз относительно второго ребёнка
+        dfs_output(tree, tree[currentNode].secondChild);
+    }
+}
