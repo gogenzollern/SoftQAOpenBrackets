@@ -11,19 +11,20 @@ int main()
     // Устанавливаем русский язык
     setlocale(LC_ALL, "Russian"); 
 
-    // Node - parent, fChild, sChild, value (поля структуры)
-    int expectedRoot = -1;
-    vector<Node> expectedTree = { {-1, 2, 3, "-"}, {1, 4, 5, "+"}, {1, NotExist, NotExist, "c"}, {2, NotExist, NotExist, "a"}, {2, NotExist, NotExist, "b"} };
+    vector<Node> tree(MaxSize); // дерево (вектор из узлов)
+    int root; //индекс корня
 
-    int outputRoot = -1;
-    vector<Node> outputTree = { {-1, 2, 3, "-"}, {1, 4, 5, "+"}, {1, NotExist, NotExist, "c"}, {2, NotExist, NotExist, "a"}, {2, NotExist, NotExist, "b"} };
+    bool isInputSuccess = inputTree(tree, root); // считать и построить дерево
 
-    bool isEqualTree = isEqualTrees(expectedTree, expectedRoot, outputTree, outputRoot);
+    openBrackets(tree, root); // обход в глубину и раскрытие скобок
 
-    if (isEqualTree)
-        cout << "Совпадение\n";
-    else
-        cout << "Нет совпадения\n";
+    dfs_output(tree, root); // размножает вершины так, чтобы не было циклов
+
+    //lazy propogation - когда вместо копирования сразу сначала подвес на вершину а потом уже ее размножение
+    // стиратель старых связей и вершин (если сын для отца не сын - то его выкидываем и наоборот)
+    deleteOldNodes(tree);
+
+    bool isOutputSuccess = outputTree(tree); // вывод дерева
 
     return 0;
 }
@@ -260,6 +261,8 @@ bool inputTree(vector<Node>& tree, int& root)
                 tree[currentNode.parent].secondChild = id;
         }
     }
+
+    return true;
 }
 
 //! Вывести дерево разбора выражений
@@ -280,6 +283,8 @@ bool outputTree(vector<Node>& tree)
 
             cout << i << " " << tree[i].parent << " " << tree[i].value << "\n";
     }
+
+    return true;
 }
 
 //! Удалить устаревшие узлы в дереве разбора выражений
