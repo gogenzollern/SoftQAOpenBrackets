@@ -16,11 +16,11 @@ namespace TestopenBrackets
 		TEST_METHOD(testing_isEqualTree_treesAreEqual)
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, 2, 3, "-"}, {1, 4, 5, "+"}, {1, NotExist, NotExist, "c"}, {2, NotExist, NotExist, "a"}, {2, NotExist, NotExist, "b"} };
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, 2, 3, "-"}, {1, 4, 5, "+"}, {1, NotExist, NotExist, "c"}, {2, NotExist, NotExist, "a"}, {2, NotExist, NotExist, "b"} };
 
 			bool isEqualTree = isEqualTrees(expectedTree, expectedRoot, inputTree, inputRoot);
@@ -33,11 +33,11 @@ namespace TestopenBrackets
 		TEST_METHOD(testing_isEqualTree_treesAreNotEqual)
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, 2, 3, "-"}, {1, 4, 5, "+"}, {1, NotExist, NotExist, "c"}, {2, NotExist, NotExist, "a"}, {2, NotExist, NotExist, "b"} };
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, 2, 3, "-"}, {1, 4, 5, "+"}, {1, NotExist, NotExist, "c"}, {2, NotExist, NotExist, "a"}};
 
 			bool isEqualTree = isEqualTrees(expectedTree, expectedRoot, inputTree, inputRoot);
@@ -49,7 +49,7 @@ namespace TestopenBrackets
 		TEST_METHOD(transformationIsForbidden) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 3, "-"},
 										{1, -1, -1, "a"},
@@ -57,7 +57,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "-"},
 											{1, -1, -1, "a"},
@@ -100,7 +100,7 @@ namespace TestopenBrackets
 		TEST_METHOD(priorityToAdditionOverMultiplication) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 5, "*"},
 										{1, 3, 4, "+"},
@@ -110,7 +110,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 31, 32, "+"},
 											{1, 3, 4, "\0"},
@@ -156,7 +156,7 @@ namespace TestopenBrackets
 		TEST_METHOD(priorityToAdditionOverByteMultiplication) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 5, "&"},
 										{1, 3, 4, "+"},
@@ -166,7 +166,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, -1, -1, "\0"},
 											{-1, 31, 32, "+"},
 											{1, 3, 4, "\0"},
@@ -212,7 +212,7 @@ namespace TestopenBrackets
 		TEST_METHOD(priorityToSubOverMultiplication) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 5, "*"},
 										{1, 3, 4, "-"},
@@ -222,7 +222,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, -1, -1, "\0"},
 											{-1, 31, 32, "-"},
 											{1, 3, 4, "\0"},
@@ -268,7 +268,7 @@ namespace TestopenBrackets
 		TEST_METHOD(priorityToSubOverByteMultiplication) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 5, "&"},
 										{1, 3, 4, "-"},
@@ -278,7 +278,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, -1, -1, "\0"},
 											{-1, 31, 32, "-"},
 											{1, 3, 4, "\0"},
@@ -324,7 +324,7 @@ namespace TestopenBrackets
 		TEST_METHOD(priorityToOperationsOverOtherBracketsOperations) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, 4, 5, "+"},
@@ -340,7 +340,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "+"},
 											{1, 38, 39, "+"},
@@ -401,7 +401,7 @@ namespace TestopenBrackets
 		TEST_METHOD(noTransformationNeededLowPriority) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "+"},
 										{1, -1, -1, "a"},
@@ -409,7 +409,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "+"},
 											{1, -1, -1, "a"},
@@ -452,7 +452,7 @@ namespace TestopenBrackets
 		TEST_METHOD(noTransformationNeededHighPriority) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, -1, -1, "a"},
@@ -460,7 +460,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "*"},
 											{1, -1, -1, "a"},
@@ -503,7 +503,7 @@ namespace TestopenBrackets
 		TEST_METHOD(multiplicationOfSumAndNegativeUnit) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, -1, -1, "-1"},
@@ -513,7 +513,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 31, 32, "+"},
 											{31, -1, -1, "-1"},
@@ -559,7 +559,7 @@ namespace TestopenBrackets
 		TEST_METHOD(multiplicationOfSubAndNegativeUnit) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, -1, -1, "-1"},
@@ -569,7 +569,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, -1, -1, "\0"},
 											{-1, 31, 32, "-"},
 											{31, -1, -1, "-1"},
@@ -615,7 +615,7 @@ namespace TestopenBrackets
 		TEST_METHOD(multiplicationOfCompositeExpressionAndNegativeUnit) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, -1, -1, "-1"},
@@ -629,7 +629,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 31, 32, "+"},
 											{31, -1, -1, "-1"},
@@ -678,7 +678,7 @@ namespace TestopenBrackets
 		TEST_METHOD(multiplicationOfSomeBrackets) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, 4, 5, "+"},
@@ -690,7 +690,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "+"},
 											{1, 34, 35, "+"},
@@ -741,7 +741,7 @@ namespace TestopenBrackets
 		TEST_METHOD(multiplicationOfNumbersOperands) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 5, "*"},
 										{1, 3, 4, "+"},
@@ -751,7 +751,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 31, 32, "+"},
 											{1, 3, 4, "\0"},
@@ -797,7 +797,7 @@ namespace TestopenBrackets
 		TEST_METHOD(multiplicationOfMixOperands) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 5, "*"},
 										{1, 3, 4, "+"},
@@ -807,7 +807,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 31, 32, "+"},
 											{1, 3, 4, "\0"},
@@ -853,7 +853,7 @@ namespace TestopenBrackets
 		TEST_METHOD(whileTransformationRecursionNotOnlyOnce) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = { {-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, 4, 5, "+"},
@@ -869,7 +869,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = { {-1, -1, -1, "\0"},
 											{-1, 2, 3, "+"},
 											{1, 38, 39, "-"},
@@ -936,12 +936,25 @@ namespace TestopenBrackets
 		TEST_METHOD(notOnlyOneRecursionDirection) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
-			vector<Node> inputTree = { };
+			int inputRoot = 1;
+			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
+										{-1, 2, 3, "-"},
+										{1, -1, -1, "a"},
+										{1, 4, 5, "*"},
+										{3, -1, -1, "1"},
+										{3, 6, 7, "+"},
+										{5, -1, -1, "0"},
+										{5, 8, 9, "*"},
+										{7, -1, -1, "1"},
+										{7, 10, 11, "*"},
+										{9, -1, -1, "-1"},
+										{9, 12, 13, "-"},
+										{11, -1, -1, "-a"},
+										{11, -1, -1, "b"}};
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 3, 37, "-"},
 											{38, -1, -1, "a"},
@@ -996,7 +1009,7 @@ namespace TestopenBrackets
 		TEST_METHOD(сomplexTest) 
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "+"},
 										{1, 7, 6, "-"},
@@ -1030,7 +1043,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "+"},
 											{1, 7, 6, "-"},
@@ -1113,7 +1126,7 @@ namespace TestopenBrackets
 		TEST_METHOD(сomplexTest_loadTesting)
 		{
 			// Входное дерево
-			int inputRoot = -1;
+			int inputRoot = 1;
 			vector<Node> inputTree = {	{-1, -1, -1, "\0"},
 										{-1, 2, 3, "*"},
 										{1, 4, 5, "*"},
@@ -1147,7 +1160,7 @@ namespace TestopenBrackets
 			initializeFullTree(inputTree);
 
 			// Ожидаемое дерево
-			int expectedRoot = -1;
+			int expectedRoot = 1;
 			vector<Node> expectedTree = {	{-1, -1, -1, "\0"},
 											{-1, 2, 3, "+"},
 											{1, 222, 223, "+"},
