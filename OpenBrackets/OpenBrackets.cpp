@@ -207,6 +207,5 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
         tree[currentNode].firstChild = tree.size() - 2;
         tree[currentNode].secondChild = tree.size() - 1;
         }
-
     return;
 }
