@@ -168,11 +168,13 @@ void initializeFullTree(vector<Node>& inputTree);
 /*! Ввести заданное дерево разбора выражений
     \param[in\out] tree - дерево разбора выражений
     \param[in\out] root - индекс корня дерева разбора выражений
+    \return true - при успешном ввводе, false - иначе
 */
-void inputTree(vector<Node>& tree, int& root);
+bool inputTree(vector<Node>& tree, int& root);
 
 /*! Вывести дерево разбора выражений
     \param[in] tree - дерево разбора выражений
+    \return true - при успешном выводе, false - иначе
 */
-void outputTree(vector<Node>& tree);
+bool outputTree(vector<Node>& tree);
 
