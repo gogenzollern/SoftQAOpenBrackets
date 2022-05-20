@@ -286,6 +286,100 @@ bool outputTree(vector<Node>& tree)
     return true;
 }
 
+//! Вывести сообщение об ошибке
+bool crashOutput(ErrorType error)
+{
+    bool isSuccessOutput = false;
+    switch (error)
+    {
+        case NO_ERROR:
+            isSuccessOutput = true;
+            break;
+
+        case INPUT_FILE_NOT_EXIST:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case UNKNOWN_FILE_EXTENSION:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case OUTPUT_FILE_CREATION_FAILED:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case WRONG_DATA_FORMAT:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case NOT_BINARY_TREE:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case SAME_NODES_ID:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case SAME_PARENT_AND_NODE_ID:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case LACK_OF_OPERANDS:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case NODE_ID_OUT_OF_RANGE:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case PARENT_ID_OUT_OF_RANGE:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case INVALID_NODE_SYMBOL:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case UNSUPPORTED_OPERATION:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case UNEXCEPTABLE_PARENT_ID:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case NO_ROOT:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case TREE_SIZE_OUT_OF_RANGE:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+
+        case INVALID_NUMBER_OF_NODES:
+            cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+    }
+
+    return isSuccessOutput;
+}
+
 //! Удалить устаревшие узлы в дереве разбора выражений
 void deleteOldNodes(vector<Node>& tree)
 {
