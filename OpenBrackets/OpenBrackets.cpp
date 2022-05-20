@@ -380,6 +380,19 @@ bool crashOutput(ErrorType error)
     return isSuccessOutput;
 }
 
+//! Проверить дерево на ошибки
+ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
+{
+    if (root != NotExist)
+    {
+        return NO_ROOT;
+    }
+    else
+    {
+        return NO_ERROR;
+    }
+}
+
 //! Удалить устаревшие узлы в дереве разбора выражений
 void deleteOldNodes(vector<Node>& tree)
 {
