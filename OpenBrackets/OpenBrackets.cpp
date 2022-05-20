@@ -115,16 +115,40 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
         if (tree[firstChild].value == "+")
         {
 	        // Перестраиваем дерево в соответствии с этим случаем
+            greatgrandchildren[0] = grandchildren[0];
+            greatgrandchildren[1] = grandchildren[2];
+            greatgrandchildren[2] = grandchildren[0];
+            greatgrandchildren[3] = grandchildren[3];
+            greatgrandchildren[4] = grandchildren[1];
+            greatgrandchildren[5] = grandchildren[2];
+            greatgrandchildren[6] = grandchildren[1];
+            greatgrandchildren[7] = grandchildren[3];
         }
         //Иначе если второй ребёнок является сложением
         else if (tree[secondChild].value == "+")
         {
 	        // Перестраиваем дерево в соответствии с этим случаем
+            greatgrandchildren[0] = grandchildren[0];
+            greatgrandchildren[1] = grandchildren[2];
+            greatgrandchildren[2] = grandchildren[1];
+            greatgrandchildren[3] = grandchildren[2];
+            greatgrandchildren[4] = grandchildren[0];
+            greatgrandchildren[5] = grandchildren[3];
+            greatgrandchildren[6] = grandchildren[1];
+            greatgrandchildren[7] = grandchildren[3];
         }
         // Иначе
         else
         {
 	        // Перестраиваем дерево для всех остальных случаев
+            greatgrandchildren[0] = grandchildren[0];
+            greatgrandchildren[1] = grandchildren[2];
+            greatgrandchildren[2] = grandchildren[0];
+            greatgrandchildren[3] = grandchildren[3];
+            greatgrandchildren[4] = grandchildren[1];
+            greatgrandchildren[5] = grandchildren[3];
+            greatgrandchildren[6] = grandchildren[1];
+            greatgrandchildren[7] = grandchildren[2];
         }
         // Присваиваем текущему узлу операцию сложения тк первое значение всегда прибавляется
         tree[currentNode].value = '+';
