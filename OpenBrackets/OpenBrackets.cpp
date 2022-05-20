@@ -281,3 +281,22 @@ bool outputTree(vector<Node>& tree)
             cout << i << " " << tree[i].parent << " " << tree[i].value << "\n";
     }
 }
+
+//! Удалить устаревшие узлы в дереве разбора выражений
+void deleteOldNodes(vector<Node>& tree)
+{
+    // Для каждого из узлов дерева
+    for (int k = 0; k < tree.size(); ++k)
+    {
+        for (int i = 0; i < tree.size(); ++i)
+        {
+            // Если у текущего узла дерева нет родителя
+            if (tree[i].parent != NotExist)
+            {
+                // Если родитель удалён или не совпадают идентификаторы у детей с родителем
+                if ((tree[tree[i].parent].firstChild != i && tree[tree[i].parent].secondChild != i) || tree[tree[i].parent].value == "")
+                    tree[i].value = ""; //  Удалить узел
+            }
+        }
+    }
+}
