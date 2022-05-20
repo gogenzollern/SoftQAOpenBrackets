@@ -262,3 +262,22 @@ bool inputTree(vector<Node>& tree, int& root)
     }
 }
 
+//! Вывести дерево разбора выражений
+bool outputTree(vector<Node>& tree)
+{
+    cout << "\n";
+    int tree_size = 0;
+    for (int i = 0; i < tree.size(); ++i)
+    {
+        if (tree[i].value != "")
+            tree_size++;
+    }
+    cout << tree_size << "\n";
+
+    for (int i = 0; i < tree.size(); ++i)
+    {
+        if (tree[i].value != "")
+
+            cout << i << " " << tree[i].parent << " " << tree[i].value << "\n";
+    }
+}
