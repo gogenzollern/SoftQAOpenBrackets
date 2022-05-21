@@ -89,7 +89,21 @@ void openBrackets(vector<Node>&tree, int currentNode)
         // Если после перестройки куска дерева текущий узел не является операцией умножения или побитового умножения
         if (tree[currentNode].value != "*" && tree[currentNode].value != "&")
         {
-            //  Раскрыть скобки у дерева, спускаясь вниз по нему, относительно текущего узла
+            // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно текущего узла
+            openBrackets(tree, currentNode);
+        }
+    }
+
+    // Если текуший узел является операцией вычитания
+    if (tree[currentNode].value == "-") {
+        
+        // Если у внуки являются операциями вычитания или сложения
+        if (tree[tree[currentNode].secondChild].value == "-" || tree[tree[currentNode].secondChild].value == "+") 
+        {
+            // Перестроить часть дерева относительнно текущего узла
+            replaceTree(tree, currentNode, tree[currentNode].value);
+
+            // Раскрыть скобки у дерева, спускаясь вниз по нему, относительно текущего узла
             openBrackets(tree, currentNode);
         }
     }
