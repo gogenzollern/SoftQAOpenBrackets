@@ -470,22 +470,33 @@ void dfsOutput(vector<Node>& tree, int current)
 //! Скопировать заданную вершину в векторе вершин
 int copyVertex(vector<Node>& tree, int currentNode)
 {
-    // Считать, что позиция для вставки запоследний элемент вектора
-    int pos = tree.size();
+    int pos; // Позиция для вставки
 
-    // Добавить в конец вектора копируемую вершину
-    tree.push_back(tree[currentNode]);
+    // Если идентификатор копируемой вершины в пределах размера вектора
+    if (currentNode < tree.size() || currentNode >= 1)
+    {
+        // Считать, что позиция для вставки запоследний элемент вектора
+        pos = tree.size();
 
-    // Если у копируемой вершины не отсутствует первый ребёнок
-    if (tree[currentNode].firstChild != NotExist) {
-        // Считать первым ребенком текущей вершины его копию
-        tree[currentNode].firstChild = copyVertex(tree, tree[currentNode].firstChild);
+        // Добавить в конец вектора копируемую вершину
+        tree.push_back(tree[currentNode]);
+
+        // Если у копируемой вершины не отсутствует первый ребёнок
+        if (tree[currentNode].firstChild != NotExist) {
+            // Считать первым ребенком текущей вершины его копию
+            tree[currentNode].firstChild = copyVertex(tree, tree[currentNode].firstChild);
+        }
+
+        // Если у копируемой вершины не отсутствует второй ребёнок
+        if (tree[currentNode].secondChild != NotExist) {
+            // Считать вторым ребенком текущей вершины его копию
+            tree[currentNode].secondChild = copyVertex(tree, tree[currentNode].secondChild);
+        }
     }
-
-    // Если у копируемой вершины не отсутствует второй ребёнок
-    if (tree[currentNode].secondChild != NotExist) {
-        // Считать вторым ребенком текущей вершины его копию
-        tree[currentNode].secondChild = copyVertex(tree, tree[currentNode].secondChild);
+    else
+    {
+        // Считать, что позиции для вставки не существует
+        pos = -1;
     }
 
     return pos;
