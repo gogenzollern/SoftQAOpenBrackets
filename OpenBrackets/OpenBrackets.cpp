@@ -98,7 +98,33 @@ void openBrackets(vector<Node>&tree, int currentNode)
 //! Перестроить часть дерева ниже текущего узла в соответствии с операцией
 void replaceTree(vector<Node>& tree, int currentNode, string operation)
 {
-    
+    // Если операция текущего узла вычитание
+    if (operation == "-")
+    {   
+        // Поменять местами первого ребенка со вторым
+        swap(tree[currentNode].firstChild, tree[currentNode].secondChild);
+
+        // Поменять второго ребенка и внука первого ребенка местами
+        swap(tree[currentNode].secondChild, tree[tree[currentNode].firstChild].firstChild);
+
+        // Привязать родителей
+        tree[tree[currentNode].secondChild].parent = currentNode;
+        tree[tree[tree[currentNode].firstChild].firstChild].parent = tree[currentNode].firstChild;
+
+        // Если операция у внука сложение
+        if (tree[tree[currentNode].firstChild].value == "+") 
+        {
+            // Поменять её на вычитание
+            tree[tree[currentNode].firstChild].value = "-";
+        }
+        else if (tree[tree[currentNode].firstChild].value == "-") // Иначе если операция вычитание
+        {
+            // Поменять её на сложение
+            tree[tree[currentNode].firstChild].value = "+";
+        }
+    }
+    else
+    {
         // Получить первого ребёнка текущего узла (с операцией высшего приоритета)
         int firstChild = tree[currentNode].firstChild;
         // Получить второго ребёнка текущего узла (с операцией высшего приоритета)
@@ -106,93 +132,93 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
         // Если первый ребёнок является операцией с низшим приоритетом и второй ребёнок является операцией с низшим приоритетом
         if ((tree[firstChild].value == "+" || tree[firstChild].value == "-") && (tree[secondChild].value == "+" || tree[secondChild].value == "-"))
         {
-        // Создаём внуков и правнуков для текущего узла
-        int grandchildren[4] = { tree[firstChild].firstChild, tree[firstChild].secondChild, tree[secondChild].firstChild, tree[secondChild].secondChild };
-        int greatgrandchildren[8];
-        
+            // Создаём внуков и правнуков для текущего узла
+            int grandchildren[4] = { tree[firstChild].firstChild, tree[firstChild].secondChild, tree[secondChild].firstChild, tree[secondChild].secondChild };
+            int greatgrandchildren[8];
 
-        // Если первый ребёнок текущего узла является сложением
-        if (tree[firstChild].value == "+")
-        {
-	        // Перестраиваем дерево в соответствии с этим случаем
-            greatgrandchildren[0] = grandchildren[0];
-            greatgrandchildren[1] = grandchildren[2];
-            greatgrandchildren[2] = grandchildren[0];
-            greatgrandchildren[3] = grandchildren[3];
-            greatgrandchildren[4] = grandchildren[1];
-            greatgrandchildren[5] = grandchildren[2];
-            greatgrandchildren[6] = grandchildren[1];
-            greatgrandchildren[7] = grandchildren[3];
-        }
-        //Иначе если второй ребёнок является сложением
-        else if (tree[secondChild].value == "+")
-        {
-	        // Перестраиваем дерево в соответствии с этим случаем
-            greatgrandchildren[0] = grandchildren[0];
-            greatgrandchildren[1] = grandchildren[2];
-            greatgrandchildren[2] = grandchildren[1];
-            greatgrandchildren[3] = grandchildren[2];
-            greatgrandchildren[4] = grandchildren[0];
-            greatgrandchildren[5] = grandchildren[3];
-            greatgrandchildren[6] = grandchildren[1];
-            greatgrandchildren[7] = grandchildren[3];
-        }
-        // Иначе
-        else
-        {
-	        // Перестраиваем дерево для всех остальных случаев
-            greatgrandchildren[0] = grandchildren[0];
-            greatgrandchildren[1] = grandchildren[2];
-            greatgrandchildren[2] = grandchildren[0];
-            greatgrandchildren[3] = grandchildren[3];
-            greatgrandchildren[4] = grandchildren[1];
-            greatgrandchildren[5] = grandchildren[3];
-            greatgrandchildren[6] = grandchildren[1];
-            greatgrandchildren[7] = grandchildren[2];
-        }
-        // Присваиваем текущему узлу операцию сложения тк первое значение всегда прибавляется
-        tree[currentNode].value = '+';
 
-        // Если первый или второй ребёнок является операцией вычитания
-        if (tree[firstChild].value == "-" || tree[secondChild].value == "-")
-        {
-	        // Присвоить и первому и второму ребёнку операцию вычитания
-            tree[firstChild].value = "-";
-            tree[secondChild].value = "-";
-        }
-
-        Node summands[4]; // либо * &
-
-        // Для каждого из 4 внуков (слагаемых)
-        for (int i = 0; i < 4; ++i)
-        {
-            summands[i].value = operation;
-	        // Подключить первую пару слагаемых к первому ребёнку
-            if (i < 2) 
+            // Если первый ребёнок текущего узла является сложением
+            if (tree[firstChild].value == "+")
             {
-                summands[i].parent = firstChild;
+                // Перестраиваем дерево в соответствии с этим случаем
+                greatgrandchildren[0] = grandchildren[0];
+                greatgrandchildren[1] = grandchildren[2];
+                greatgrandchildren[2] = grandchildren[0];
+                greatgrandchildren[3] = grandchildren[3];
+                greatgrandchildren[4] = grandchildren[1];
+                greatgrandchildren[5] = grandchildren[2];
+                greatgrandchildren[6] = grandchildren[1];
+                greatgrandchildren[7] = grandchildren[3];
             }
-            // Подключить вторую пару слагаемых ко второму ребёнку
+            //Иначе если второй ребёнок является сложением
+            else if (tree[secondChild].value == "+")
+            {
+                // Перестраиваем дерево в соответствии с этим случаем
+                greatgrandchildren[0] = grandchildren[0];
+                greatgrandchildren[1] = grandchildren[2];
+                greatgrandchildren[2] = grandchildren[1];
+                greatgrandchildren[3] = grandchildren[2];
+                greatgrandchildren[4] = grandchildren[0];
+                greatgrandchildren[5] = grandchildren[3];
+                greatgrandchildren[6] = grandchildren[1];
+                greatgrandchildren[7] = grandchildren[3];
+            }
+            // Иначе
             else
             {
-                summands[i].parent = secondChild;
+                // Перестраиваем дерево для всех остальных случаев
+                greatgrandchildren[0] = grandchildren[0];
+                greatgrandchildren[1] = grandchildren[2];
+                greatgrandchildren[2] = grandchildren[0];
+                greatgrandchildren[3] = grandchildren[3];
+                greatgrandchildren[4] = grandchildren[1];
+                greatgrandchildren[5] = grandchildren[3];
+                greatgrandchildren[6] = grandchildren[1];
+                greatgrandchildren[7] = grandchildren[2];
             }
-            
-            // Подключить правнуков ко внукам
-            summands[i].firstChild = greatgrandchildren[i * 2];
-            summands[i].secondChild = greatgrandchildren[i * 2 + 1];
-            // Добавить внука в дерево
-            tree.push_back(summands[i]);
-        }
+            // Присваиваем текущему узлу операцию сложения тк первое значение всегда прибавляется
+            tree[currentNode].value = '+';
 
-        // Привязываем внуков к родителям в правильном порядке
-        tree[firstChild].firstChild = tree.size() - 4;
-        tree[firstChild].secondChild = tree.size() - 3;
-        tree[secondChild].firstChild = tree.size() - 2;
-        tree[secondChild].secondChild = tree.size() - 1;
+            // Если первый или второй ребёнок является операцией вычитания
+            if (tree[firstChild].value == "-" || tree[secondChild].value == "-")
+            {
+                // Присвоить и первому и второму ребёнку операцию вычитания
+                tree[firstChild].value = "-";
+                tree[secondChild].value = "-";
+            }
 
-        // Досрочно завершить функцию
-        return;
+            Node summands[4]; // либо * &
+
+            // Для каждого из 4 внуков (слагаемых)
+            for (int i = 0; i < 4; ++i)
+            {
+                summands[i].value = operation;
+                // Подключить первую пару слагаемых к первому ребёнку
+                if (i < 2)
+                {
+                    summands[i].parent = firstChild;
+                }
+                // Подключить вторую пару слагаемых ко второму ребёнку
+                else
+                {
+                    summands[i].parent = secondChild;
+                }
+
+                // Подключить правнуков ко внукам
+                summands[i].firstChild = greatgrandchildren[i * 2];
+                summands[i].secondChild = greatgrandchildren[i * 2 + 1];
+                // Добавить внука в дерево
+                tree.push_back(summands[i]);
+            }
+
+            // Привязываем внуков к родителям в правильном порядке
+            tree[firstChild].firstChild = tree.size() - 4;
+            tree[firstChild].secondChild = tree.size() - 3;
+            tree[secondChild].firstChild = tree.size() - 2;
+            tree[secondChild].secondChild = tree.size() - 1;
+
+            // Досрочно завершить функцию
+            return;
         }
 
         // ситуация попроще (один +)
@@ -206,32 +232,33 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
         // Если только один из детей текущего узла является операцией с низшим приоритетом
         if (tree[firstChild].value == "+" || tree[firstChild].value == "-")
         {
-	        // Запоминаем внуков узла
+            // Запоминаем внуков узла
             int grandchildren[4] = { tree[firstChild].firstChild, tree[currentNode].secondChild, tree[firstChild].secondChild, tree[currentNode].secondChild };
 
             //был - => -; был + стал +
             tree[currentNode].value = tree[firstChild].value;
             Node summands[2];
 
-	        // Для каждого из двух внуков (слагаемых)
+            // Для каждого из двух внуков (слагаемых)
             for (int i = 0; i < 2; ++i)
             {
-	            // Присвоить текущую операцию слагаемому и привязать его к текущему узлу
+                // Присвоить текущую операцию слагаемому и привязать его к текущему узлу
                 summands[i].value = operation;
                 summands[i].parent = currentNode;
 
-	            // Подключить внуков к слагаемым
+                // Подключить внуков к слагаемым
                 summands[i].firstChild = grandchildren[i * 2];
                 summands[i].secondChild = grandchildren[i * 2 + 1];
-	            // Добавить слагаемое в дерево
+                // Добавить слагаемое в дерево
                 tree.push_back(summands[i]);
             }
 
-        // Привязываем внуков к родителям в правильном порядке
-        tree[currentNode].firstChild = tree.size() - 2;
-        tree[currentNode].secondChild = tree.size() - 1;
+            // Привязываем внуков к родителям в правильном порядке
+            tree[currentNode].firstChild = tree.size() - 2;
+            tree[currentNode].secondChild = tree.size() - 1;
         }
-    return;
+        return;
+    }
 }
 
 //! Ввести заданное дерево разбора выражений
