@@ -274,7 +274,7 @@ bool outputTree(vector<Node>& tree, int& current)
         if (tree[i].value != "")
             tree_size++;
     }
-    cout << tree_size << "\n";
+    cout << tree_size;
 
     dfsOutput(tree, current);
 
@@ -465,4 +465,11 @@ void dfsOutput(vector<Node>& tree, int current)
         dfsOutput(tree, tree[current].firstChild);
     if (tree[current].secondChild != NotExist)
         dfsOutput(tree, tree[current].secondChild);
+}
+
+//! Скопировать заданную вершину
+int copyVertex(vector<Node>& tree, int currentNode)
+{
+    int pastePos;
+    return pastePos;
 }
