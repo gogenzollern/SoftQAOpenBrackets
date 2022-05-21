@@ -174,9 +174,10 @@ bool inputTree(vector<Node>& tree, int& root);
 
 /*! Вывести дерево разбора выражений
     \param[in] tree - дерево разбора выражений
+    \param[in] current - индекс вершины, с которой производить вывод дерева
     \return true - при успешном выводе, false - иначе
 */
-bool outputTree(vector<Node>& tree);
+bool outputTree(vector<Node>& tree, int& current);
 
 /*! Вывести вершины дерева обходом в глубину
     \param[in] tree - дерево разбора выражений
