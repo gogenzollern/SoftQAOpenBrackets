@@ -184,3 +184,10 @@ bool outputTree(vector<Node>& tree, int& current);
     \param[in] current - идентификатор вершины с которой производить вывод 
 */
 void dfsOutput(vector<Node>& tree, int current);
+
+/*! Скопировать заданную вершину
+    \param[in] currentNode индекс копируемой вершины
+    \param[in\out] tree вектор вершин
+    \return индекс позиции скопированной вершины
+*/
+int copyVertex(vector<Node>& tree, int currentNode);
