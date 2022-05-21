@@ -23,7 +23,7 @@ int main()
     // стиратель старых связей и вершин (если сын для отца не сын - то его выкидываем и наоборот)
     deleteOldNodes(tree);
 
-    bool isOutputSuccess = outputTree(tree); // вывод дерева
+    bool isOutputSuccess = outputTree(tree, root); // вывод дерева
 
     return 0;
 }
@@ -265,7 +265,7 @@ bool inputTree(vector<Node>& tree, int& root)
 }
 
 //! Вывести дерево разбора выражений
-bool outputTree(vector<Node>& tree)
+bool outputTree(vector<Node>& tree, int& current)
 {
     cout << "\n";
     int tree_size = 0;
@@ -276,11 +276,7 @@ bool outputTree(vector<Node>& tree)
     }
     cout << tree_size << "\n";
 
-    for (int i = 0; i < tree.size(); ++i)
-    {
-        if (tree[i].value != "")
-            cout << i << " " << tree[i].parent << " " << tree[i].value << "\n";
-    }
+    dfsOutput(tree, current);
 
     return true;
 }
