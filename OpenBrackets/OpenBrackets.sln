@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_crashOutput", "..\Test
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_checkOnErrors", "..\Test_checkOnErrors\Test_checkOnErrors.vcxproj", "{D43A803D-FF02-491B-84E1-59262B0A1416}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_copyVertex", "..\Test_copyVertex\Test_copyVertex.vcxproj", "{1B906353-79FD-4A67-9EF5-53DDA8F140A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -61,6 +63,14 @@ Global
 		{D43A803D-FF02-491B-84E1-59262B0A1416}.Release|x64.Build.0 = Release|x64
 		{D43A803D-FF02-491B-84E1-59262B0A1416}.Release|x86.ActiveCfg = Release|Win32
 		{D43A803D-FF02-491B-84E1-59262B0A1416}.Release|x86.Build.0 = Release|Win32
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Debug|x64.ActiveCfg = Debug|x64
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Debug|x64.Build.0 = Debug|x64
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Debug|x86.ActiveCfg = Debug|Win32
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Debug|x86.Build.0 = Debug|Win32
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Release|x64.ActiveCfg = Release|x64
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Release|x64.Build.0 = Release|x64
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Release|x86.ActiveCfg = Release|Win32
+		{1B906353-79FD-4A67-9EF5-53DDA8F140A0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

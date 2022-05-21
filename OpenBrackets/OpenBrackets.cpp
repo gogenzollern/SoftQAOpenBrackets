@@ -467,9 +467,9 @@ void dfsOutput(vector<Node>& tree, int current)
         dfsOutput(tree, tree[current].secondChild);
 }
 
-//! Скопировать заданную вершину
+//! Скопировать заданную вершину в векторе вершин
 int copyVertex(vector<Node>& tree, int currentNode)
 {
-    int pastePos;
+    int pastePos = 0;
     return pastePos;
 }
