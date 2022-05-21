@@ -108,7 +108,7 @@ namespace TestcopyVertex
 		TEST_METHOD(copyingVertexFromVectorCyfralValue)
 		{
 			int root = 1;
-			int copyingVertexIndex = 3;
+			int copyingVertexIndex = 5;
 			vector<Node> inputVector = { {NotExist, NotExist, NotExist, "\0"}, {-1, 2, 3, "*"}, {1, NotExist, NotExist, "a"}, {1, 4, 5, "+"}, {3, NotExist, NotExist, "b"}, {3, NotExist, NotExist, "12345"} };
 			int expectedPos = 6;
 
@@ -130,7 +130,7 @@ namespace TestcopyVertex
 		TEST_METHOD(copyingVertexFromVectorMixedValue)
 		{
 			int root = 1;
-			int copyingVertexIndex = 3;
+			int copyingVertexIndex = 5;
 			vector<Node> inputVector = { {NotExist, NotExist, NotExist, "\0"}, {-1, 2, 3, "*"}, {1, NotExist, NotExist, "a"}, {1, 4, 5, "+"}, {3, NotExist, NotExist, "b"}, {3, NotExist, NotExist, "alpHabet12345"} };
 			int expectedPos = 6;
 
@@ -139,7 +139,7 @@ namespace TestcopyVertex
 											{1, -1, -1, "a"},
 											{1, 4, 5, "+"},
 											{3, -1, -1, "b"},
-											{3, -1, -1, "alphabet12345"},
+											{3, -1, -1, "alpHabet12345"},
 											{3, -1, -1, "alpHabet12345"} };
 
 			int pos = copyVertex(inputVector, copyingVertexIndex);
