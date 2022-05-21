@@ -11,14 +11,17 @@ int main()
     // Устанавливаем русский язык
     setlocale(LC_ALL, "Russian"); 
 
-    vector<Node> tree(MaxSize); // дерево (вектор из узлов)
-    int root; //индекс корня
+    vector<Node> tree(MaxSize); // Дерево, представляющее из себя вектор из его узлов
+    int root; // Идентификатор корня дерева
 
-    bool isInputSuccess = inputTree(tree, root); // считать и построить дерево
+    // Считать и построить дерево
+    bool isInputSuccess = inputTree(tree, root); 
 
-    openBrackets(tree, root); // обход в глубину и раскрытие скобок
+    // Раскрыть скобки в дереве разбора выражений
+    openBrackets(tree, root); 
 
-    bool isOutputSuccess = outputTree(tree, root); // вывод дерева
+    // Вывести результирующее дерево
+    bool isOutputSuccess = outputTree(tree, root); 
 
     return 0;
 }
