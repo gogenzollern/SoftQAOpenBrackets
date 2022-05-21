@@ -126,17 +126,6 @@ void openBrackets(vector<Node>& tree, int currentNode);
 */
 void replaceTree(vector<Node>& tree, int currentNode, string operation);
 
-/*! ”странить в дереве циклы обойд€ дерево в глубину относительно текущего узла
-    \param[in] currentNode - индекс статового узла дл€ обхода дерева
-    \param[in\out] tree - дерево разбора выражений
-*/
-void dfs_output(vector<Node>& tree, int currentNode);
-
-/*! ”далить устаревшие узлы в дереве разбора выражений
-    \param[in\out] tree - дерево разбора выражений
-*/
-void deleteOldNodes(vector<Node>& tree);
-
 /*! ¬ывести сообщение об ошибке
     \param[in] error - тип ошибки
     \return true - при успешном выводе, false - иначе
