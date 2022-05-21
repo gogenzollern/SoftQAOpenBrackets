@@ -178,3 +178,8 @@ bool inputTree(vector<Node>& tree, int& root);
 */
 bool outputTree(vector<Node>& tree);
 
+/*! ¬ывести вершины дерева обходом в глубину
+    \param[in] tree - дерево разбора выражений
+    \param[in] current - идентификатор вершины с которой производить вывод 
+*/
+void dfsOutput(vector<Node>& tree, int current);
