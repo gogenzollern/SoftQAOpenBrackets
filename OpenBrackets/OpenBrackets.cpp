@@ -18,11 +18,6 @@ int main()
 
     openBrackets(tree, root); // обход в глубину и раскрытие скобок
 
-    dfs_output(tree, root); // размножает вершины так, чтобы не было циклов
-
-    // стиратель старых связей и вершин (если сын для отца не сын - то его выкидываем и наоборот)
-    deleteOldNodes(tree);
-
     bool isOutputSuccess = outputTree(tree, root); // вывод дерева
 
     return 0;
