@@ -279,7 +279,6 @@ bool outputTree(vector<Node>& tree)
     for (int i = 0; i < tree.size(); ++i)
     {
         if (tree[i].value != "")
-
             cout << i << " " << tree[i].parent << " " << tree[i].value << "\n";
     }
 
@@ -460,4 +459,14 @@ void dfs_output(vector<Node>& tree, int currentNode)
         // Устранить образовавшиеся в дереве циклы, спускаясь вниз относительно второго ребёнка
         dfs_output(tree, tree[currentNode].secondChild);
     }
+}
+
+//! Вывести вершины дерева обходом в глубину
+void dfsOutput(vector<Node>& tree, int current)
+{
+    cout << "\n" << current << " " << tree[current].parent << " " << tree[current].value;
+    if (tree[current].firstChild != NotExist)
+        dfsOutput(tree, tree[current].firstChild);
+    if (tree[current].secondChild != NotExist)
+        dfsOutput(tree, tree[current].secondChild);
 }
