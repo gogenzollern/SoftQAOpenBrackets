@@ -17,11 +17,14 @@ int main()
     // Считать и построить дерево
     bool isInputSuccess = inputTree(tree, root); 
 
-    // Раскрыть скобки в дереве разбора выражений
-    openBrackets(tree, root); 
+    if (isInputSuccess)
+    {
+        // Раскрыть скобки в дереве разбора выражений
+        openBrackets(tree, root);
 
-    // Вывести результирующее дерево
-    bool isOutputSuccess = outputTree(tree, root); 
+        // Вывести результирующее дерево
+        bool isOutputSuccess = outputTree(tree, root);
+    }
 
     return 0;
 }
@@ -284,16 +287,68 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
 //! Ввести заданное дерево разбора выражений
 bool inputTree(vector<Node>& tree, int& root)
 {
+    bool isCrashed = false;
     int size;
-    cin >> size;
+
+    try
+    {
+        cin >> size;
+    }
+    catch (exception& e)
+    {
+        isCrashed = crashOutput(WRONG_DATA_FORMAT);
+        return false;
+    }
+
+    if (size >= MaxSize)
+    {
+        isCrashed = crashOutput(TREE_SIZE_OUT_OF_RANGE);
+        return false;
+    }
 
     for (int i = 0; i < size; ++i) {
         Node currentNode;
         int id;
-        cin >> id;
-        cin >> currentNode.parent;
-        cin >> currentNode.value;
-        tree[id] = currentNode;
+
+        try
+        {
+            cin >> id;
+            cin >> currentNode.parent;
+            cin >> currentNode.value;
+            
+            if (id > MaxSize || id < 1)
+                throw (NODE_ID_OUT_OF_RANGE);
+
+            if ((currentNode.parent > MaxSize || currentNode.parent < 1) && (currentNode.parent != NotExist))
+                throw (PARENT_ID_OUT_OF_RANGE);
+        }
+        catch (exception& e)
+        {
+            isCrashed = crashOutput(WRONG_DATA_FORMAT);
+            return false;
+        }
+        catch (ErrorType er)
+        {
+            isCrashed = crashOutput(er);
+            return false;
+        }
+        
+        if (id >= MaxSize || (id < 1))
+        {
+            isCrashed = crashOutput(NODE_ID_OUT_OF_RANGE);
+            return false;
+        }
+
+        // Если узел с указанным id еще не существует
+        if (tree[id].value == "" && tree[id].parent == NotExist && tree[id].firstChild == NotExist && tree[id].secondChild == NotExist)
+        {
+            tree[id] = currentNode; // Добавить его в дерево
+        }
+        else
+        {
+            isCrashed = crashOutput(SAME_NODES_ID);
+            return false;
+        }
 
         if (currentNode.parent == NotExist)
         {
@@ -308,7 +363,13 @@ bool inputTree(vector<Node>& tree, int& root)
         }
     }
 
-    return true;
+    isCrashed = crashOutput(checkOnErrors(size, tree, root));
+
+    if (isCrashed == false)
+        return true;
+    else
+        return false;
+
 }
 
 //! Вывести дерево разбора выражений
@@ -340,82 +401,82 @@ bool crashOutput(ErrorType error)
             break;
 
         case INPUT_FILE_NOT_EXIST:
-            cout << "bla bla bla";
+            cout << "Неверно указан файл с входными данными. Возможно, файл не существует." << endl;
             isSuccessOutput = true;
             break;
 
         case UNKNOWN_FILE_EXTENSION:
-            cout << "bla bla bla";
+            cout << "Неверно указано расширение файла. Файл должен иметь расширение .txt" << endl;
             isSuccessOutput = true;
             break;
 
         case OUTPUT_FILE_CREATION_FAILED:
-            cout << "bla bla bla";
+            cout << "Неверно указан файл для выходных данных. Возможно указанного расположения не существует или нет прав на запись." << endl;
             isSuccessOutput = true;
             break;
 
         case WRONG_DATA_FORMAT:
-            cout << "bla bla bla";
+            cout << "Программа принимает на вход одно дерево разбора выражений в виде списка смежности. Измените входной файл." << endl;
             isSuccessOutput = true;
             break;
 
         case NOT_BINARY_TREE:
-            cout << "bla bla bla";
+            cout << "Дерево разбора выражений должно быть бинарным. Измените дерево разбора выражений." << endl;
             isSuccessOutput = true;
             break;
 
         case SAME_NODES_ID:
-            cout << "bla bla bla";
+            cout << "Узлы дерева разбора выражений не уникальны. Измените дерево разбора выражений на корректное." << endl;
             isSuccessOutput = true;
             break;
 
         case SAME_PARENT_AND_NODE_ID:
-            cout << "bla bla bla";
+            cout << "Узел дерева разбора выражений не может являться родительским самому себе. Измените дерево разбора выражений на корректное." << endl;
             isSuccessOutput = true;
             break;
 
         case LACK_OF_OPERANDS:
-            cout << "bla bla bla";
+            cout << "Поддерживаемые операции всегда бинарны. Добавьте операнды, где их недостаёт." << endl;
             isSuccessOutput = true;
             break;
 
         case NODE_ID_OUT_OF_RANGE:
-            cout << "bla bla bla";
+            cout << "Идентификатором узла должно являться натуральное число в диапазоне [0..30]. Измените идентификаторы узлов дерева разбора выражений на корректные." << endl;
             isSuccessOutput = true;
             break;
 
         case PARENT_ID_OUT_OF_RANGE:
-            cout << "bla bla bla";
+            cout << "Идентификатором родительского узла для узла в дереве разбора выражений должно являться целое число в диапазоне [-1..29]. Измените идентификаторы узлов дерева разбора выражений на корректные." << endl;
             isSuccessOutput = true;
             break;
 
         case INVALID_NODE_SYMBOL:
-            cout << "bla bla bla";
+            cout << "Дерево разбора выражений задано некорректно. В значении операнда используется недопустимый символ." << endl;
             isSuccessOutput = true;
             break;
 
         case NOT_RIGHT_LINK:
-            cout << "bla bla bla";
+            cout << "Дерево разбора выражений задано не корректно. Родители и дети совпадают не для всех узлов." << endl;
             isSuccessOutput = true;
             break;
 
         case UNEXCEPTABLE_PARENT_ID:
-            cout << "bla bla bla";
+            cout << "Родителем узла дерева разбора выражений не может являться его ребёнок. Измените дерево разбора выражений." << endl;
             isSuccessOutput = true;
             break;
 
         case NO_ROOT:
-            cout << "bla bla bla";
+            cout << "В дереве разбора выражений отсутствует корень. Добавьте его." << endl;
             isSuccessOutput = true;
             break;
 
         case TREE_SIZE_OUT_OF_RANGE:
-            cout << "bla bla bla";
+            cout << "Число узлов в дереве разбора выражений должно быть натуральным числом в диапазоне [1..30]." << endl;
             isSuccessOutput = true;
             break;
 
         case INVALID_NUMBER_OF_NODES:
-            cout << "bla bla bla";
+            cout << "Дерево разбора выражений задано некорректно. Указанное и фактическое число узлов в дереве разбора выражений не совпадают." << endl;
             isSuccessOutput = true;
             break;
         default:
@@ -472,19 +533,27 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
                 return UNEXCEPTABLE_PARENT_ID;
 
             // Если идентификатор узла не совпадает с идентификатором родительского узла джля его детей
-            if (currentID != tree[currentFirstChild].parent || currentID != tree[currentSecondChild].parent)
-                return NOT_RIGHT_LINK;
-
+            if (currentFirstChild != NotExist && currentSecondChild != NotExist)
+            {
+                if (currentID != tree[currentFirstChild].parent || currentID != tree[currentSecondChild].parent)
+                    return NOT_RIGHT_LINK;
+            }
             // Если в значении узла не операция или алфавитно-цифровые символы
-            if (currentValue != "+" || currentValue != "&" || currentValue != "*" || currentValue != "-")
+            if (!(currentValue == "+" || currentValue == "&" || currentValue == "*" || currentValue == "-"))
             {
                 int alphaNumSymbols = 0;
+                int plusMinusOpSymbInBegin = 0;
 
                 for (int k = 0; k < currentValue.size(); k++)
                 {
+                    if (currentValue[0] == '-' || currentValue[0] == '+')
+                        plusMinusOpSymbInBegin = 1;
+
                     if (isalnum(currentValue[k]))
                         alphaNumSymbols++;
                 }
+
+                alphaNumSymbols += plusMinusOpSymbInBegin;
                 
                 if (alphaNumSymbols != currentValue.size())
                     return INVALID_NODE_SYMBOL;
@@ -507,10 +576,10 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
             }
 
         } 
-        else if ((tree[i].value == "") && (tree[i].firstChild != NotExist || tree[i].secondChild != NotExist)) // Если у узла отсутствует значение, но присутствуют другие атрибуты
-        {
-            return INVALID_NODE_SYMBOL;
-        }
+        //else if ((tree[i].value == "") && (tree[i].firstChild != NotExist || tree[i].secondChild != NotExist)) // Если у узла отсутствует значение, но присутствуют другие атрибуты
+        //{
+        //    return INVALID_NODE_SYMBOL;
+        //}
 
     }
 
@@ -527,7 +596,7 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
         return INVALID_NUMBER_OF_NODES;
 
     // Если размер дерева больше максимального
-    if (size > MaxSize)
+    if (size >= MaxSize)
         return TREE_SIZE_OUT_OF_RANGE;
 
     return NO_ERROR;
