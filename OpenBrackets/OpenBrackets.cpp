@@ -293,16 +293,18 @@ bool inputTree(vector<Node>& tree, int& root)
     try
     {
         cin >> size;
+
+        if (size > MaxSize || size < 1)
+            throw (TREE_SIZE_OUT_OF_RANGE);
     }
     catch (exception& e)
     {
         isCrashed = crashOutput(WRONG_DATA_FORMAT);
         return false;
     }
-
-    if (size >= MaxSize)
+    catch (ErrorType er)
     {
-        isCrashed = crashOutput(TREE_SIZE_OUT_OF_RANGE);
+        isCrashed = crashOutput(er);
         return false;
     }
 
@@ -376,6 +378,8 @@ bool inputTree(vector<Node>& tree, int& root)
 bool outputTree(vector<Node>& tree, int& current)
 {
     cout << "\n";
+    // Вывести размер дерева
+
     int tree_size = 0;
     for (int i = 0; i < tree.size(); ++i)
     {
@@ -384,6 +388,7 @@ bool outputTree(vector<Node>& tree, int& current)
     }
     cout << tree_size;
 
+    // Вывести узлы дерева разбора выражений в порядке обхода в глубину, начиная с корневого
     dfsOutput(tree, current);
 
     return true;
@@ -441,12 +446,12 @@ bool crashOutput(ErrorType error)
             break;
 
         case NODE_ID_OUT_OF_RANGE:
-            cout << "Идентификатором узла должно являться натуральное число в диапазоне [0..30]. Измените идентификаторы узлов дерева разбора выражений на корректные." << endl;
+            cout << "Идентификатором узла должно являться натуральное число в диапазоне [1..30]. Измените идентификаторы узлов дерева разбора выражений на корректные." << endl;
             isSuccessOutput = true;
             break;
 
         case PARENT_ID_OUT_OF_RANGE:
-            cout << "Идентификатором родительского узла для узла в дереве разбора выражений должно являться целое число в диапазоне [-1..29]. Измените идентификаторы узлов дерева разбора выражений на корректные." << endl;
+            cout << "Идентификатором родительского узла для узла в дереве разбора выражений должно являться целое ненулевое число в диапазоне [-1..29]. Измените идентификаторы узлов дерева разбора выражений на корректные." << endl;
             isSuccessOutput = true;
             break;
 
@@ -491,6 +496,7 @@ bool crashOutput(ErrorType error)
 //! Проверить дерево на ошибки
 ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
 {
+    int skippedNodes = 0;
     int treeRoot = 0;
     int treeSize = 0;
 
@@ -529,15 +535,16 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
                 return SAME_PARENT_AND_NODE_ID;
 
             // Если идентификатор родителя совпадает с идентификатором любого из детей
-            if (currentParent == currentFirstChild || currentParent == currentSecondChild)
+            if (currentParent!= NotExist && (currentParent == currentFirstChild || currentParent == currentSecondChild))
                 return UNEXCEPTABLE_PARENT_ID;
 
-            // Если идентификатор узла не совпадает с идентификатором родительского узла джля его детей
+            // Если идентификатор узла не совпадает с идентификатором родительского узла для его детей
             if (currentFirstChild != NotExist && currentSecondChild != NotExist)
             {
                 if (currentID != tree[currentFirstChild].parent || currentID != tree[currentSecondChild].parent)
                     return NOT_RIGHT_LINK;
             }
+
             // Если в значении узла не операция или алфавитно-цифровые символы
             if (!(currentValue == "+" || currentValue == "&" || currentValue == "*" || currentValue == "-"))
             {
@@ -574,14 +581,18 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
                 if (numOfUniqueParents > 2)
                     return NOT_BINARY_TREE;
             }
-
-        } 
-        //else if ((tree[i].value == "") && (tree[i].firstChild != NotExist || tree[i].secondChild != NotExist)) // Если у узла отсутствует значение, но присутствуют другие атрибуты
-        //{
-        //    return INVALID_NODE_SYMBOL;
-        //}
+        }
+        else
+        {
+            skippedNodes++;
+        }
 
     }
+
+
+    // Если число пустых узлов равно размеру дерева
+    if (skippedNodes == tree.size())
+        return WRONG_DATA_FORMAT;
 
     // Если у дерева нет корневого узла
     if (treeRoot == 0)
