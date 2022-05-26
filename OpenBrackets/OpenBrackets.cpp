@@ -332,10 +332,11 @@ bool outputTree(vector<Node>& tree, int& current)
 bool crashOutput(ErrorType error)
 {
     bool isSuccessOutput = false;
+
     switch (error)
     {
         case NO_ERROR:
-            isSuccessOutput = true;
+            isSuccessOutput = false;
             break;
 
         case INPUT_FILE_NOT_EXIST:
@@ -415,6 +416,10 @@ bool crashOutput(ErrorType error)
 
         case INVALID_NUMBER_OF_NODES:
             cout << "bla bla bla";
+            isSuccessOutput = true;
+            break;
+        default:
+            cout << "Произошла неизвестная ошибка. Попробуйте перезапустить программу." << endl;
             isSuccessOutput = true;
             break;
     }

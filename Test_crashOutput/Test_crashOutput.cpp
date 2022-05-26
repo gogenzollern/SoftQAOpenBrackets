@@ -13,7 +13,7 @@ namespace TestcrashOutput
 		TEST_METHOD(sendingErrorNO_ERROR)
 		{
 			bool isCrashOutputSuccess = crashOutput(NO_ERROR);
-			Assert::IsTrue(isCrashOutputSuccess);
+			Assert::IsTrue(!isCrashOutputSuccess);
 		}
 
 		TEST_METHOD(sendingErrorINPUT_FILE_NOT_EXIST)
