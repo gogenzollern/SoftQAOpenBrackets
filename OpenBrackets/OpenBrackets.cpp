@@ -394,7 +394,7 @@ bool crashOutput(ErrorType error)
             isSuccessOutput = true;
             break;
 
-        case UNSUPPORTED_OPERATION:
+        case NOT_RIGHT_LINK:
             cout << "bla bla bla";
             isSuccessOutput = true;
             break;
@@ -430,14 +430,107 @@ bool crashOutput(ErrorType error)
 //! Проверить дерево на ошибки
 ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
 {
-    if (root != NotExist)
+    int treeRoot = 0;
+    int treeSize = 0;
+
+    for (int i = 0; i < tree.size(); ++i)
     {
+        // Если значение у узла есть
+        if (tree[i].value != "")
+        {
+            // Запомнить атрибуты текущего узла
+            int currentID = i;
+            int currentParent = tree[i].parent;
+            int currentFirstChild = tree[i].firstChild;
+            int currentSecondChild = tree[i].secondChild;
+            string currentValue = tree[i].value;
+
+            treeSize++; // Увеличить реальный размер дерева
+
+            // Если родитель у узла отсутствует
+            if (currentParent == NotExist)
+                treeRoot++;
+
+            // Если текущий идентификатор узла вне поддерживаемого диапазона
+            if (currentID > MaxSize || currentID < 1)
+                return NODE_ID_OUT_OF_RANGE;
+
+            // Если текущий узел - операция и у нее нет двух операндов
+            if ((currentValue == "+" || currentValue == "&" || currentValue == "*" || currentValue == "-") && (currentFirstChild == NotExist || currentSecondChild == NotExist))
+                return LACK_OF_OPERANDS;
+
+            // Если текущий идентификатор родителя узла вне поддерживаемого диапазона или не отсутствует
+            if (currentParent > MaxSize || (currentParent < 1 && currentParent != NotExist))
+                return PARENT_ID_OUT_OF_RANGE;
+
+            // Если идентификатор родителя текущего узла совпдаает с идентификатором узла
+            if (currentParent == currentID)
+                return SAME_PARENT_AND_NODE_ID;
+
+            // Если идентификатор родителя совпадает с идентификатором любого из детей
+            if (currentParent == currentFirstChild || currentParent == currentSecondChild)
+                return UNEXCEPTABLE_PARENT_ID;
+
+            // Если идентификатор узла не совпадает с идентификатором родительского узла джля его детей
+            if (currentID != tree[currentFirstChild].parent || currentID != tree[currentSecondChild].parent)
+                return NOT_RIGHT_LINK;
+
+            // Если в значении узла не операция или алфавитно-цифровые символы
+            if (currentValue != "+" || currentValue != "&" || currentValue != "*" || currentValue != "-")
+            {
+                int alphaNumSymbols = 0;
+
+                for (int k = 0; k < currentValue.size(); k++)
+                {
+                    if (isalnum(currentValue[k]))
+                        alphaNumSymbols++;
+                }
+                
+                if (alphaNumSymbols != currentValue.size())
+                    return INVALID_NODE_SYMBOL;
+            }
+
+            // Проходим по дереву и проверяем на уникальность родителей 
+            for (int j = 0; j < tree.size(); ++j)
+            {
+                int numOfUniqueParents = 1; // Считать, что узел-родитель укзаан таковым для одного из узлов дерева
+
+                if (tree[j].value != "" && j != currentID)
+                {
+                    if ((currentParent != NotExist) && (currentParent == tree[j].parent))
+                        numOfUniqueParents++;
+                }
+
+                // Если среди узлов есть больше двух с одним родителем
+                if (numOfUniqueParents > 2)
+                    return NOT_BINARY_TREE;
+            }
+
+        } 
+        else if ((tree[i].value == "") && (tree[i].firstChild != NotExist || tree[i].secondChild != NotExist)) // Если у узла отсутствует значение, но присутствуют другие атрибуты
+        {
+            return INVALID_NODE_SYMBOL;
+        }
+
+    }
+
+    // Если у дерева нет корневого узла
+    if (treeRoot == 0)
         return NO_ROOT;
-    }
-    else
-    {
-        return NO_ERROR;
-    }
+
+    // Если в данных несколько корневых узлов
+    if (treeRoot > 1)
+        return WRONG_DATA_FORMAT;
+
+    // Если реальный размер дерева не совпадает с заявленным
+    if (treeSize != size)
+        return INVALID_NUMBER_OF_NODES;
+
+    // Если размер дерева больше максимального
+    if (size > MaxSize)
+        return TREE_SIZE_OUT_OF_RANGE;
+
+    return NO_ERROR;
 }
 
 //! Вывести вершины дерева обходом в глубину

@@ -70,9 +70,9 @@ namespace TestcrashOutput
 			Assert::IsTrue(isCrashOutputSuccess);
 		}
 
-		TEST_METHOD(sendingErrorUNSUPPORTED_OPERATION)
+		TEST_METHOD(sendingErrorNOT_RIGHT_LINK)
 		{
-			bool isCrashOutputSuccess = crashOutput(UNSUPPORTED_OPERATION);
+			bool isCrashOutputSuccess = crashOutput(NOT_RIGHT_LINK);
 			Assert::IsTrue(isCrashOutputSuccess);
 		}
 
