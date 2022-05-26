@@ -616,11 +616,16 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
 //! Вывести вершины дерева обходом в глубину
 void dfsOutput(vector<Node>& tree, int current)
 {
+    // Вывести значение идентификатора узла, идентификатора его родителя и значение текущего узла
     cout << "\n" << current << " " << tree[current].parent << " " << tree[current].value;
+
+    // Если первый ребёнок текущего узла существует
     if (tree[current].firstChild != NotExist)
-        dfsOutput(tree, tree[current].firstChild);
+        dfsOutput(tree, tree[current].firstChild); // Вывести вершины дерева обходом в глубину, начиная с первого ребёнка текущего узла
+
+    // Если второй ребёнок текущего узла существует
     if (tree[current].secondChild != NotExist)
-        dfsOutput(tree, tree[current].secondChild);
+        dfsOutput(tree, tree[current].secondChild); // Вывести вершины дерева обходом в глубину, начиная со второго ребёнка текущего узла
 }
 
 //! Скопировать заданную вершину в векторе вершин
