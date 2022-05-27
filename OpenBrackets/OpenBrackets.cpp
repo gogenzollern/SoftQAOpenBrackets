@@ -611,7 +611,7 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
         return WRONG_DATA_FORMAT;
 
     // Если размер дерева больше максимального
-    if (size >= MaxSize)
+    if (size > MaxSize)
         return TREE_SIZE_OUT_OF_RANGE;
 
     // Если реальный размер дерева не совпадает с заявленным
