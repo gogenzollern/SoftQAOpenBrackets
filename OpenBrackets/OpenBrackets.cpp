@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
 #include <vector>
 #include <fstream>
 
@@ -572,10 +573,11 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
                     return INVALID_NODE_SYMBOL;
             }
 
+            int numOfUniqueParents = 1; // Считать, что узел-родитель указан таковым для одного из узлов дерева
+
             // Проходим по дереву и проверяем на уникальность родителей 
             for (int j = 0; j < tree.size(); ++j)
             {
-                int numOfUniqueParents = 1; // Считать, что узел-родитель укзаан таковым для одного из узлов дерева
 
                 if (tree[j].value != "" && j != currentID)
                 {
@@ -608,13 +610,13 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
     if (treeRoot > 1)
         return WRONG_DATA_FORMAT;
 
-    // Если реальный размер дерева не совпадает с заявленным
-    if (treeSize != size)
-        return INVALID_NUMBER_OF_NODES;
-
     // Если размер дерева больше максимального
     if (size >= MaxSize)
         return TREE_SIZE_OUT_OF_RANGE;
+
+    // Если реальный размер дерева не совпадает с заявленным
+    if (treeSize != size)
+        return INVALID_NUMBER_OF_NODES;
 
     return NO_ERROR;
 }
