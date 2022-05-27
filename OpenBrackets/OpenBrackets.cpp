@@ -292,7 +292,8 @@ bool inputTree(vector<Node>& tree, int& root)
 
     try
     {
-        cin >> size;
+        if (!(cin >> size))
+            throw (WRONG_DATA_FORMAT);
 
         if (size > MaxSize || size < 1)
             throw (TREE_SIZE_OUT_OF_RANGE);
@@ -314,9 +315,14 @@ bool inputTree(vector<Node>& tree, int& root)
 
         try
         {
-            cin >> id;
-            cin >> currentNode.parent;
-            cin >> currentNode.value;
+            if (!(cin >> id))
+                throw(WRONG_DATA_FORMAT);
+
+            if (!(cin >> currentNode.parent))
+                throw(WRONG_DATA_FORMAT);
+
+            if (!(cin >> currentNode.value))
+                throw(WRONG_DATA_FORMAT);
             
             if (id > MaxSize || id < 1)
                 throw (NODE_ID_OUT_OF_RANGE);
