@@ -1,4 +1,9 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+﻿/*!
+* \file Файл исходного кода программы
+* Файл содержит в себе реализацию функций программы
+*/
+
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -7,30 +12,31 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char* argv[])
 {
     // Устанавливаем русский язык
     setlocale(LC_ALL, "Russian"); 
 
+    ifstream fin; // Поток ввода
+    ofstream fout; // Поток вывода
     vector<Node> tree(MaxSize); // Дерево, представляющее из себя вектор из его узлов
     int root; // Идентификатор корня дерева
 
     // Считать и построить дерево
-    bool isInputSuccess = inputTree(tree, root); 
+    bool isInputSuccess = inputTree(argc, argv, fin, tree, root);
 
     if (isInputSuccess)
     {
         // Раскрыть скобки в дереве разбора выражений
         openBrackets(tree, root);
-
         // Вывести результирующее дерево
-        bool isOutputSuccess = outputTree(tree, root);
+        bool isOutputSuccess = outputTree(argc, argv, fout, tree, root);
     }
 
     return 0;
 }
 
-//! Сравнить два дерева между собой
+// Сравнить два дерева между собой
 bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> secondTree, int rootOfSecondTree)
 {
     bool isEqualTrees = false; // Считать, что деревья не равны между собой
@@ -57,7 +63,7 @@ bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> seco
     return isEqualTrees;
 }
 
-//! Заполнить входное дерево до максимального размера
+// Заполнить входное дерево до максимального размера
 void initializeFullTree(vector<Node>& inputTree)
 {
     for (int i = inputTree.size() - 1; i < MaxSize - 1; i++)
@@ -66,7 +72,7 @@ void initializeFullTree(vector<Node>& inputTree)
     }
 }
 
-//! Раскрыть скобки в заданном выражении
+// Раскрыть скобки в заданном выражении
 void openBrackets(vector<Node>&tree, int currentNode)
 {
 
@@ -111,7 +117,7 @@ void openBrackets(vector<Node>&tree, int currentNode)
     }
 }
 
-//! Перестроить часть дерева ниже текущего узла в соответствии с операцией
+// Перестроить часть дерева ниже текущего узла в соответствии с операцией
 void replaceTree(vector<Node>& tree, int currentNode, string operation)
 {
     // Если операция текущего узла вычитание
@@ -285,51 +291,43 @@ void replaceTree(vector<Node>& tree, int currentNode, string operation)
     }
 }
 
-//! Ввести заданное дерево разбора выражений
-bool inputTree(vector<Node>& tree, int& root)
+// Ввести заданное дерево разбора выражений
+bool inputTree(int argc, char* argv[], ifstream& fin, vector<Node>& tree, int& root)
 {
     bool isCrashed = false;
     int size;
 
-    try
-    {
-        if (!(cin >> size))
-            throw (WRONG_DATA_FORMAT);
-
-        if (size > MaxSize || size < 1)
-            throw (TREE_SIZE_OUT_OF_RANGE);
-    }
-    catch (exception& e)
-    {
-        isCrashed = crashOutput(WRONG_DATA_FORMAT);
-        return false;
-    }
-    catch (ErrorType er)
-    {
-        isCrashed = crashOutput(er);
+    // Если количество файлов в командной строке не равно 3
+    if (argc != 3) {
+        cerr << "Аргументы командной строки заданы неверно" << endl;
         return false;
     }
 
-    for (int i = 0; i < size; ++i) {
-        Node currentNode;
-        int id;
+    // Запоминаем имена входного и выходного файлов
+    string file1 = argv[1];
 
+    // Если расширение входного файла не равно txt
+    if (file1.substr(file1.rfind('.') + 1, string::npos) != "txt") {
+        isCrashed = crashOutput(UNKNOWN_FILE_EXTENSION);
+        return false;
+    }
+
+    fin.open(file1);
+
+    // Если не удалось открыть
+    if (!fin.is_open()) {
+        isCrashed = crashOutput(INPUT_FILE_NOT_EXIST);
+        return false;
+    }
+    else
+    {
         try
         {
-            if (!(cin >> id))
-                throw(WRONG_DATA_FORMAT);
+            if (!(fin >> size))
+                throw (WRONG_DATA_FORMAT);
 
-            if (!(cin >> currentNode.parent))
-                throw(WRONG_DATA_FORMAT);
-
-            if (!(cin >> currentNode.value))
-                throw(WRONG_DATA_FORMAT);
-            
-            if (id > MaxSize || id < 1)
-                throw (NODE_ID_OUT_OF_RANGE);
-
-            if ((currentNode.parent > MaxSize || currentNode.parent < 1) && (currentNode.parent != NotExist))
-                throw (PARENT_ID_OUT_OF_RANGE);
+            if (size > MaxSize || size < 1)
+                throw (TREE_SIZE_OUT_OF_RANGE);
         }
         catch (exception& e)
         {
@@ -341,67 +339,118 @@ bool inputTree(vector<Node>& tree, int& root)
             isCrashed = crashOutput(er);
             return false;
         }
-        
-        if (id >= MaxSize || (id < 1))
-        {
-            isCrashed = crashOutput(NODE_ID_OUT_OF_RANGE);
-            return false;
-        }
 
-        // Если узел с указанным id еще не существует
-        if (tree[id].value == "" && tree[id].parent == NotExist && tree[id].firstChild == NotExist && tree[id].secondChild == NotExist)
-        {
-            tree[id] = currentNode; // Добавить его в дерево
-        }
-        else
-        {
-            isCrashed = crashOutput(SAME_NODES_ID);
-            return false;
-        }
+        for (int i = 0; i < size; ++i) {
+            Node currentNode;
+            int id;
 
-        if (currentNode.parent == NotExist)
-        {
-            root = id;
-        }
-        else
-        {
-            if (tree[currentNode.parent].firstChild == NotExist)
-                tree[currentNode.parent].firstChild = id;
+            try
+            {
+                if (!(fin >> id))
+                    throw(WRONG_DATA_FORMAT);
+
+                if (!(fin >> currentNode.parent))
+                    throw(WRONG_DATA_FORMAT);
+
+                if (!(fin >> currentNode.value))
+                    throw(WRONG_DATA_FORMAT);
+
+                if (id > MaxSize || id < 1)
+                    throw (NODE_ID_OUT_OF_RANGE);
+
+                if ((currentNode.parent > MaxSize || currentNode.parent < 1) && (currentNode.parent != NotExist))
+                    throw (PARENT_ID_OUT_OF_RANGE);
+            }
+            catch (exception& e)
+            {
+                isCrashed = crashOutput(WRONG_DATA_FORMAT);
+                return false;
+            }
+            catch (ErrorType er)
+            {
+                isCrashed = crashOutput(er);
+                return false;
+            }
+
+            if (id >= MaxSize || (id < 1))
+            {
+                isCrashed = crashOutput(NODE_ID_OUT_OF_RANGE);
+                return false;
+            }
+
+            // Если узел с указанным id еще не существует
+            if (tree[id].value == "" && tree[id].parent == NotExist && tree[id].firstChild == NotExist && tree[id].secondChild == NotExist)
+            {
+                tree[id] = currentNode; // Добавить его в дерево
+            }
             else
-                tree[currentNode.parent].secondChild = id;
+            {
+                isCrashed = crashOutput(SAME_NODES_ID);
+                return false;
+            }
+
+            if (currentNode.parent == NotExist)
+            {
+                root = id;
+            }
+            else
+            {
+                if (tree[currentNode.parent].firstChild == NotExist)
+                    tree[currentNode.parent].firstChild = id;
+                else
+                    tree[currentNode.parent].secondChild = id;
+            }
         }
+
+        isCrashed = crashOutput(checkOnErrors(size, tree, root));
+
+        if (isCrashed == false)
+            return true;
+        else
+            return false;
     }
-
-    isCrashed = crashOutput(checkOnErrors(size, tree, root));
-
-    if (isCrashed == false)
-        return true;
-    else
-        return false;
 
 }
 
-//! Вывести дерево разбора выражений
-bool outputTree(vector<Node>& tree, int& current)
+// Вывести дерево разбора выражений
+bool outputTree(int argc, char* argv[], ofstream& fout, vector<Node>& tree, int& current)
 {
-    cout << "\n";
-    // Вывести размер дерева
+    bool isCrashed;
+    string file2 = argv[2]; // Запоминаем путь к выходному файлу
 
-    int tree_size = 0;
-    for (int i = 0; i < tree.size(); ++i)
-    {
-        if (tree[i].value != "")
-            tree_size++;
+    // Если расширение выходного файла не равно txt
+    if (file2.substr(file2.rfind('.') + 1, string::npos) != "txt") {
+        isCrashed = crashOutput(UNKNOWN_FILE_EXTENSION);
+        return false;
     }
-    cout << tree_size;
 
-    // Вывести узлы дерева разбора выражений в порядке обхода в глубину, начиная с корневого
-    dfsOutput(tree, current);
+    fout.open(file2);
 
-    return true;
+    // Если выходной файл для записи не удалось открыть
+    if (!fout.is_open()) {
+        isCrashed = crashOutput(OUTPUT_FILE_CREATION_FAILED);
+        return false;
+    }
+
+    if (fout.is_open())
+    {
+        // Вывести размер дерева
+        int tree_size = 0;
+        for (int i = 0; i < tree.size(); ++i)
+        {
+            if (tree[i].value != "")
+                tree_size++;
+        }
+        fout << tree_size;
+
+        // Вывести узлы дерева разбора выражений в порядке обхода в глубину, начиная с корневого
+        dfsOutput(fout, tree, current);
+
+        return true;
+    }
 }
 
-//! Вывести сообщение об ошибке
+// Вывести сообщение об ошибке
 bool crashOutput(ErrorType error)
 {
     bool isSuccessOutput = false;
@@ -500,7 +549,7 @@ bool crashOutput(ErrorType error)
     return isSuccessOutput;
 }
 
-//! Проверить дерево на ошибки
+// Проверить дерево на ошибки
 ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
 {
     int skippedNodes = 0;
@@ -621,22 +670,22 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root)
     return NO_ERROR;
 }
 
-//! Вывести вершины дерева обходом в глубину
-void dfsOutput(vector<Node>& tree, int current)
+// Вывести вершины дерева обходом в глубину
+void dfsOutput(ofstream& fout, vector<Node>& tree, int current)
 {
     // Вывести значение идентификатора узла, идентификатора его родителя и значение текущего узла
-    cout << "\n" << current << " " << tree[current].parent << " " << tree[current].value;
+    fout << "\n" << current << " " << tree[current].parent << " " << tree[current].value;
 
     // Если первый ребёнок текущего узла существует
     if (tree[current].firstChild != NotExist)
-        dfsOutput(tree, tree[current].firstChild); // Вывести вершины дерева обходом в глубину, начиная с первого ребёнка текущего узла
+        dfsOutput(fout, tree, tree[current].firstChild); // Вывести вершины дерева обходом в глубину, начиная с первого ребёнка текущего узла
 
     // Если второй ребёнок текущего узла существует
     if (tree[current].secondChild != NotExist)
-        dfsOutput(tree, tree[current].secondChild); // Вывести вершины дерева обходом в глубину, начиная со второго ребёнка текущего узла
+        dfsOutput(fout, tree, tree[current].secondChild); // Вывести вершины дерева обходом в глубину, начиная со второго ребёнка текущего узла
 }
 
-//! Скопировать заданную вершину в векторе вершин
+// Скопировать заданную вершину в векторе вершин
 int copyVertex(vector<Node>& tree, int currentNode)
 {
     int pos; // Позиция для вставки

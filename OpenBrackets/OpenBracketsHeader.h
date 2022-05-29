@@ -1,3 +1,8 @@
+/*!
+* \file Заголовочный файл программы
+* Файл содержит в себе структуры и заголовки для функций программы
+*/
+
 #pragma once
 
 #include <vector>
@@ -12,16 +17,16 @@ using namespace std;
 //! Узел дерева
 struct Node
 {   
-    //!> Идентификатор узла-родителя    
+    //! Идентификатор узла-родителя    
     int parent;
 
-    //!> Идентификатор узла-первого ребёнка
+    //! Идентификатор узла-первого ребёнка
     int firstChild;
 
-    //!> Идентификатор узла-второго ребёнка
+    //! Идентификатор узла-второго ребёнка
     int secondChild; 
 
-    //!> Значение узла
+    //! Значение узла
     string value; 
 
     //!> Конструктор узла дерева по умолчанию
@@ -61,74 +66,57 @@ struct Node
 //! Типы ошибок 
 enum ErrorType
 {
-    //!> Нет ошибки
-    NO_ERROR,
+    NO_ERROR, ///< Нет ошибки
 
-    //!> Входной файл не существует
-    INPUT_FILE_NOT_EXIST,
+    INPUT_FILE_NOT_EXIST, ///< Входной файл не существует
+ 
+    UNKNOWN_FILE_EXTENSION, ///< Входной файл имеет неправильное расширение
 
-    //!> Входной файл имеет неправильное расширение
-    UNKNOWN_FILE_EXTENSION,
+    OUTPUT_FILE_CREATION_FAILED, ///< Невозможно создать указанный выходной файл
 
-    //!> Невозможно создать указанный выходной файл
-    OUTPUT_FILE_CREATION_FAILED,
+    WRONG_DATA_FORMAT, ///< Во входном файле формат предоставляемых данных не соответствует требуемому
 
-    //!> Во входном файле формат предоставляемых данных не соответствует требуемому
-    WRONG_DATA_FORMAT,
+    NOT_BINARY_TREE, ///< У узлов дерева разбора выражений больше двух детей
 
-    //!> У узлов дерева разбора выражений больше двух детей
-    NOT_BINARY_TREE,
+    SAME_NODES_ID, ///< Идентификаторы узлов совпадают
 
-    //!> Идентификаторы узлов совпадают
-    SAME_NODES_ID,
+    SAME_PARENT_AND_NODE_ID, ///< Идентификатор родительского узла совпадает с идентификатором узла
 
-    //!> Идентификатор родительского узла совпадает с идентификатором узла
-    SAME_PARENT_AND_NODE_ID,
+    LACK_OF_OPERANDS, ///< У операции слишком мало операндов
 
-    //!> У операции слишком мало операндов
-    LACK_OF_OPERANDS,
+    NODE_ID_OUT_OF_RANGE, ///< Идентификатор узла дерева разбора выражений вне поддерживаемого диапазона
 
-    //!> Идентификатор узла дерева разбора выражений вне поддерживаемого диапазона
-    NODE_ID_OUT_OF_RANGE,
+    PARENT_ID_OUT_OF_RANGE, ///< Идентификатор родительского узла для узла в дереве разбора выражений вне поддерживаемого диапазона
 
-    //!>  Идентификатор родительского узла для узла в дереве разбора выражений вне поддерживаемого диапазона
-    PARENT_ID_OUT_OF_RANGE,
+    INVALID_NODE_SYMBOL, ///< Недопустимый символ в значении операнда
 
-    //!> Недопустимый символ в значении операнда
-    INVALID_NODE_SYMBOL,
+    NOT_RIGHT_LINK, ///< Родители и дети у узлов не совпадают
 
-    //!>  Родители и дети у узлов не совпадают
-    NOT_RIGHT_LINK,
+    UNEXCEPTABLE_PARENT_ID, ///< Идентификатор родительского узла является идентификатором узла-ребёнка
 
-    //!> Идентификатор родительского узла является идентификатором узла-ребёнка
-    UNEXCEPTABLE_PARENT_ID,
+    NO_ROOT, ///< Отсутствие корневого узла
 
-    //!> Отсутствие корневого узла
-    NO_ROOT,
+    TREE_SIZE_OUT_OF_RANGE, ///< Число узлов дерева разбора выражений вне поддерживаемого диапазона
 
-    //!> Число узлов дерева разбора выражений вне поддерживаемого диапазона
-    TREE_SIZE_OUT_OF_RANGE,
-
-    //!> Указанное число узлов дерева разбора выражений не совпадает с фактическим числом заданных узлов
-    INVALID_NUMBER_OF_NODES
+    INVALID_NUMBER_OF_NODES ///< Указанное число узлов дерева разбора выражений не совпадает с фактическим числом заданных узлов
 };
 
 /*! Раскрыть скобки в заданном выражении
     \param[in] currentNode - индекс узла дерева с которого следует раскрывать скобки
-    \param[in\out] tree - дерево разбора выражений
+    \param[out] tree - дерево разбора выражений
 */
 void openBrackets(vector<Node>& tree, int currentNode);
 
 /*! Перестроить часть дерева ниже текущего узла в соответствии с операцией
     \param[in] currentNode - индекс узла дерева с которого следует перестраивать дерево
     \param[in] operation - операция текущего узла
-    \param[in\out] tree - дерево разбора выражений
+    \param[out] tree - дерево разбора выражений
 */
 void replaceTree(vector<Node>& tree, int currentNode, string operation);
 
 /*! Вывести сообщение об ошибке
     \param[in] error - тип ошибки
-    \return true - при успешном выводе, false - иначе
+    \return true при успешном выводе, false - иначе
 */
 bool crashOutput(ErrorType error);
 
@@ -136,7 +124,7 @@ bool crashOutput(ErrorType error);
     \param[in] size - размер дерева
     \param[in] root - индекс корня дерева
     \param[in] tree - дерево разбора выражений
-    \return - обнаруженный тип ошибки
+    \return обнаруженный тип ошибки
 */
 ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root);
 
@@ -150,33 +138,40 @@ ErrorType checkOnErrors(int& size, vector<Node>& tree, int& root);
 bool isEqualTrees(vector<Node> firstTree, int rootOfFirstTree, vector<Node> secondTree, int rootOfSecondTree);
 
 /*! Заполнить входное дерево до максимального размера
-    \param[in\out] tree - дерево разбора выражений
+    \param[out] inputTree - дерево разбора выражений
 */
 void initializeFullTree(vector<Node>& inputTree);
 
 /*! Ввести заданное дерево разбора выражений
-    \param[in\out] tree - дерево разбора выражений
-    \param[in\out] root - индекс корня дерева разбора выражений
+    \param[in] argc - аргумент командной строки
+    \param[in] argv[] - аргументы командной строки
+    \param[in] fin - входной поток
+    \param[out] tree - дерево разбора выражений
+    \param[out] root - индекс корня дерева разбора выражений
     \return true - при успешном ввводе, false - иначе
 */
-bool inputTree(vector<Node>& tree, int& root);
+bool inputTree(int argc, char* argv[], ifstream& fin, vector<Node>& tree, int& root);
 
 /*! Вывести дерево разбора выражений
+    \param[in] argc - аргумент командной строки
+    \param[in] argv[] - аргументы командной строки
     \param[in] tree - дерево разбора выражений
     \param[in] current - индекс вершины, с которой производить вывод дерева
+    \param[out] fout - выходной поток
     \return true - при успешном выводе, false - иначе
 */
-bool outputTree(vector<Node>& tree, int& current);
+bool outputTree(int argc, char* argv[], ofstream& fout, vector<Node>& tree, int& current);
 
 /*! Вывести вершины дерева обходом в глубину
     \param[in] tree - дерево разбора выражений
     \param[in] current - идентификатор вершины с которой производить вывод 
+    \param[out] fout - выходной поток
 */
-void dfsOutput(vector<Node>& tree, int current);
+void dfsOutput(ofstream& fout, vector<Node>& tree, int current);
 
 /*! Скопировать заданную вершину в векторе вершин
     \param[in] currentNode индекс копируемой вершины
-    \param[in\out] tree вектор вершин
+    \param[out] tree вектор вершин
     \return индекс позиции скопированной вершины
 */
 int copyVertex(vector<Node>& tree, int currentNode);
