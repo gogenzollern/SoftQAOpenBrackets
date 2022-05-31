@@ -1,0 +1,130 @@
+\hypertarget{struct_node}{}\section{Структура Node}
+\label{struct_node}\index{Node@{Node}}
+
+
+Узел дерева  
+
+
+
+
+{\ttfamily \#include $<$Open\+Brackets\+Header.\+h$>$}
+
+\subsection*{Открытые члены}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_node_ad7a34779cad45d997bfd6d3d8043c75f}{Node}} ()
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+Конструктор узла дерева по умолчанию \end{quote}
+\end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_node_a314c4afdba9c757f65d45f236a9ce1fe}{Node}} (int \mbox{\hyperlink{struct_node_a122e2ce83616f32faa022223be3f50ab}{parent}}, int \mbox{\hyperlink{struct_node_a6ed10d6fbe8f8c2f08d18dd10a89f872}{first\+Child}}, int \mbox{\hyperlink{struct_node_a5ae4e8db98829aa5a678560df5ddd7ee}{second\+Child}}, string \mbox{\hyperlink{struct_node_afbfe6bbcc5e6d53bb23ff4c29c178596}{value}})
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+Конструктор при явной инициализации \end{quote}
+\end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{struct_node_a0e28753e22ef956f881210795f1c102f}{operator==}} (const \mbox{\hyperlink{struct_node}{Node}} \&other) const
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+Оператор сравнения вершин на равенство \end{quote}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Открытые атрибуты}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{struct_node_a122e2ce83616f32faa022223be3f50ab}{parent}}
+\begin{DoxyCompactList}\small\item\em Идентификатор узла-\/родителя \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_node_a6ed10d6fbe8f8c2f08d18dd10a89f872}{first\+Child}}
+\begin{DoxyCompactList}\small\item\em Идентификатор узла-\/первого ребёнка \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{struct_node_a5ae4e8db98829aa5a678560df5ddd7ee}{second\+Child}}
+\begin{DoxyCompactList}\small\item\em Идентификатор узла-\/второго ребёнка \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{struct_node_afbfe6bbcc5e6d53bb23ff4c29c178596}{value}}
+\begin{DoxyCompactList}\small\item\em Значение узла \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Подробное описание}
+Узел дерева 
+
+\subsection{Конструктор(ы)}
+\mbox{\Hypertarget{struct_node_ad7a34779cad45d997bfd6d3d8043c75f}\label{struct_node_ad7a34779cad45d997bfd6d3d8043c75f}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\begin{quote}
+Конструктор узла дерева по умолчанию \end{quote}
+
+
+\mbox{\Hypertarget{struct_node_a314c4afdba9c757f65d45f236a9ce1fe}\label{struct_node_a314c4afdba9c757f65d45f236a9ce1fe}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{int}]{parent,  }\item[{int}]{first\+Child,  }\item[{int}]{second\+Child,  }\item[{string}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\begin{quote}
+Конструктор при явной инициализации \end{quote}
+
+
+
+
+\subsection{Методы}
+\mbox{\Hypertarget{struct_node_a0e28753e22ef956f881210795f1c102f}\label{struct_node_a0e28753e22ef956f881210795f1c102f}} 
+\index{Node@{Node}!operator==@{operator==}}
+\index{operator==@{operator==}!Node@{Node}}
+\subsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Node\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node}{Node}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\begin{quote}
+Оператор сравнения вершин на равенство \end{quote}
+
+
+
+
+\subsection{Данные класса}
+\mbox{\Hypertarget{struct_node_a6ed10d6fbe8f8c2f08d18dd10a89f872}\label{struct_node_a6ed10d6fbe8f8c2f08d18dd10a89f872}} 
+\index{Node@{Node}!first\+Child@{first\+Child}}
+\index{first\+Child@{first\+Child}!Node@{Node}}
+\subsubsection{\texorpdfstring{first\+Child}{firstChild}}
+{\footnotesize\ttfamily int Node\+::first\+Child}
+
+
+
+Идентификатор узла-\/первого ребёнка 
+
+\mbox{\Hypertarget{struct_node_a122e2ce83616f32faa022223be3f50ab}\label{struct_node_a122e2ce83616f32faa022223be3f50ab}} 
+\index{Node@{Node}!parent@{parent}}
+\index{parent@{parent}!Node@{Node}}
+\subsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily int Node\+::parent}
+
+
+
+Идентификатор узла-\/родителя 
+
+\mbox{\Hypertarget{struct_node_a5ae4e8db98829aa5a678560df5ddd7ee}\label{struct_node_a5ae4e8db98829aa5a678560df5ddd7ee}} 
+\index{Node@{Node}!second\+Child@{second\+Child}}
+\index{second\+Child@{second\+Child}!Node@{Node}}
+\subsubsection{\texorpdfstring{second\+Child}{secondChild}}
+{\footnotesize\ttfamily int Node\+::second\+Child}
+
+
+
+Идентификатор узла-\/второго ребёнка 
+
+\mbox{\Hypertarget{struct_node_afbfe6bbcc5e6d53bb23ff4c29c178596}\label{struct_node_afbfe6bbcc5e6d53bb23ff4c29c178596}} 
+\index{Node@{Node}!value@{value}}
+\index{value@{value}!Node@{Node}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily string Node\+::value}
+
+
+
+Значение узла 
+
+
+
+Объявления и описания членов структуры находятся в файле\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_open_brackets_header_8h}{Open\+Brackets\+Header.\+h}}\end{DoxyCompactItemize}

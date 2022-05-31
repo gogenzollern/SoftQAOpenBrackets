@@ -1,0 +1,400 @@
+\hypertarget{_open_brackets_8cpp}{}\section{Файл Open\+Brackets.\+cpp}
+\label{_open_brackets_8cpp}\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+
+
+Файл исходного кода программы  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include \char`\"{}Open\+Brackets\+Header.\+h\char`\"{}}\newline
+\subsection*{Функции}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{_open_brackets_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{_open_brackets_8cpp_a25881c5367e2db6534a50cd6b17ed6a1}{is\+Equal\+Trees}} (vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ first\+Tree, int root\+Of\+First\+Tree, vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ second\+Tree, int root\+Of\+Second\+Tree)
+\begin{DoxyCompactList}\small\item\em Сравнить два дерева между собой \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_open_brackets_8cpp_a8e16eb9ea25217a287d10721c6d63e49}{initialize\+Full\+Tree}} (vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&\mbox{\hyperlink{_open_brackets_header_8h_a797b21a870af459209e0b303375490e6}{input\+Tree}})
+\begin{DoxyCompactList}\small\item\em Заполнить входное дерево до максимального размера \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_open_brackets_8cpp_a18dcaf2e91cb700bc12aae6fd594f0e8}{open\+Brackets}} (vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int current\+Node)
+\begin{DoxyCompactList}\small\item\em Раскрыть скобки в заданном выражении \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_open_brackets_8cpp_a61492c3970be2433213dcd7344c27426}{replace\+Tree}} (vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int current\+Node, string operation)
+\begin{DoxyCompactList}\small\item\em Перестроить часть дерева ниже текущего узла в соответствии с операцией \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_open_brackets_8cpp_a797b21a870af459209e0b303375490e6}{input\+Tree}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, ifstream \&fin, vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int \&root)
+\begin{DoxyCompactList}\small\item\em Ввести заданное дерево разбора выражений \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_open_brackets_8cpp_a7eb4dce1633fdd03c97d7fd46f02089f}{output\+Tree}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]}, ofstream \&fout, vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int \&current)
+\begin{DoxyCompactList}\small\item\em Вывести дерево разбора выражений \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_open_brackets_8cpp_a0883c51a71859d6cb3eb32602e260e4c}{crash\+Output}} (\mbox{\hyperlink{_open_brackets_header_8h_ab0df38968e4f03a3f1f6d6df0f31f45a}{Error\+Type}} error)
+\begin{DoxyCompactList}\small\item\em Вывести сообщение об ошибке \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_open_brackets_header_8h_ab0df38968e4f03a3f1f6d6df0f31f45a}{Error\+Type}} \mbox{\hyperlink{_open_brackets_8cpp_aaa006feb21d50122375e88727edfcfc7}{check\+On\+Errors}} (int \&size, vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int \&root)
+\begin{DoxyCompactList}\small\item\em Проверить дерево на ошибки \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_open_brackets_8cpp_ab583cc72190d7b0bc131d182dc947046}{dfs\+Output}} (ofstream \&fout, vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int current)
+\begin{DoxyCompactList}\small\item\em Вывести вершины дерева обходом в глубину \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_open_brackets_8cpp_ac803718224902c30b47da22d1d0e3cd6}{copy\+Vertex}} (vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&tree, int current\+Node)
+\begin{DoxyCompactList}\small\item\em Скопировать заданную вершину в векторе вершин \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Подробное описание}
+Файл исходного кода программы 
+
+Файл содержит в себе реализацию функций программы, необходимых для раскрытия скобок в математическом выражении, заданном деревом разбора выражений. В их числе функция, решающая главную задачу, а также функции, необхожимые для\+: непосредственно раскрытия скобок в дереве разбора выражений, копирования вершины и всех её производных в вектор вершин, заполнения дерева пустыми вершинами, сравнения деревьев между собой, перестраиванию части дерева ниже заданного узла в соответсвтии со знаком его операции, проверки входных данных на наличие ошибок и вывода сообщений о них, чтения входных данных из файла и записи выходных данных в файл. 
+
+\subsection{Функции}
+\mbox{\Hypertarget{_open_brackets_8cpp_aaa006feb21d50122375e88727edfcfc7}\label{_open_brackets_8cpp_aaa006feb21d50122375e88727edfcfc7}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!check\+On\+Errors@{check\+On\+Errors}}
+\index{check\+On\+Errors@{check\+On\+Errors}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{check\+On\+Errors()}{checkOnErrors()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_open_brackets_header_8h_ab0df38968e4f03a3f1f6d6df0f31f45a}{Error\+Type}} check\+On\+Errors (\begin{DoxyParamCaption}\item[{int \&}]{size,  }\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int \&}]{root }\end{DoxyParamCaption})}
+
+
+
+Проверить дерево на ошибки 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em size} & -\/ размер дерева \\
+\hline
+\mbox{\tt in}  & {\em root} & -\/ индекс корня дерева \\
+\hline
+\mbox{\tt in}  & {\em tree} & -\/ дерево разбора выражений \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+обнаруженный тип ошибки 
+\end{DoxyReturn}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_aaa006feb21d50122375e88727edfcfc7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_ac803718224902c30b47da22d1d0e3cd6}\label{_open_brackets_8cpp_ac803718224902c30b47da22d1d0e3cd6}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!copy\+Vertex@{copy\+Vertex}}
+\index{copy\+Vertex@{copy\+Vertex}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{copy\+Vertex()}{copyVertex()}}
+{\footnotesize\ttfamily int copy\+Vertex (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int}]{current\+Node }\end{DoxyParamCaption})}
+
+
+
+Скопировать заданную вершину в векторе вершин 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em current\+Node} & индекс копируемой вершины \\
+\hline
+\mbox{\tt out}  & {\em tree} & вектор вершин \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+индекс позиции скопированной вершины 
+\end{DoxyReturn}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=146pt]{_open_brackets_8cpp_ac803718224902c30b47da22d1d0e3cd6_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_ac803718224902c30b47da22d1d0e3cd6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a0883c51a71859d6cb3eb32602e260e4c}\label{_open_brackets_8cpp_a0883c51a71859d6cb3eb32602e260e4c}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!crash\+Output@{crash\+Output}}
+\index{crash\+Output@{crash\+Output}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{crash\+Output()}{crashOutput()}}
+{\footnotesize\ttfamily bool crash\+Output (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_open_brackets_header_8h_ab0df38968e4f03a3f1f6d6df0f31f45a}{Error\+Type}}}]{error }\end{DoxyParamCaption})}
+
+
+
+Вывести сообщение об ошибке 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em error} & -\/ тип ошибки \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true при успешном выводе, false -\/ иначе 
+\end{DoxyReturn}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_a0883c51a71859d6cb3eb32602e260e4c_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_ab583cc72190d7b0bc131d182dc947046}\label{_open_brackets_8cpp_ab583cc72190d7b0bc131d182dc947046}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!dfs\+Output@{dfs\+Output}}
+\index{dfs\+Output@{dfs\+Output}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{dfs\+Output()}{dfsOutput()}}
+{\footnotesize\ttfamily void dfs\+Output (\begin{DoxyParamCaption}\item[{ofstream \&}]{fout,  }\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int}]{current }\end{DoxyParamCaption})}
+
+
+
+Вывести вершины дерева обходом в глубину 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em tree} & -\/ дерево разбора выражений \\
+\hline
+\mbox{\tt in}  & {\em current} & -\/ идентификатор вершины с которой производить вывод \\
+\hline
+\mbox{\tt out}  & {\em fout} & -\/ выходной поток \\
+\hline
+\end{DoxyParams}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=139pt]{_open_brackets_8cpp_ab583cc72190d7b0bc131d182dc947046_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_ab583cc72190d7b0bc131d182dc947046_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a8e16eb9ea25217a287d10721c6d63e49}\label{_open_brackets_8cpp_a8e16eb9ea25217a287d10721c6d63e49}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!initialize\+Full\+Tree@{initialize\+Full\+Tree}}
+\index{initialize\+Full\+Tree@{initialize\+Full\+Tree}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{initialize\+Full\+Tree()}{initializeFullTree()}}
+{\footnotesize\ttfamily void initialize\+Full\+Tree (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{input\+Tree }\end{DoxyParamCaption})}
+
+
+
+Заполнить входное дерево до максимального размера 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt out}  & {\em input\+Tree} & -\/ дерево разбора выражений \\
+\hline
+\end{DoxyParams}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_a8e16eb9ea25217a287d10721c6d63e49_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a797b21a870af459209e0b303375490e6}\label{_open_brackets_8cpp_a797b21a870af459209e0b303375490e6}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!input\+Tree@{input\+Tree}}
+\index{input\+Tree@{input\+Tree}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{input\+Tree()}{inputTree()}}
+{\footnotesize\ttfamily bool input\+Tree (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]},  }\item[{ifstream \&}]{fin,  }\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int \&}]{root }\end{DoxyParamCaption})}
+
+
+
+Ввести заданное дерево разбора выражений 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em argc} & -\/ аргумент командной строки \\
+\hline
+\mbox{\tt in}  & {\em argv\mbox{[}$\,$\mbox{]}} & -\/ аргументы командной строки \\
+\hline
+\mbox{\tt in}  & {\em fin} & -\/ входной поток \\
+\hline
+\mbox{\tt out}  & {\em tree} & -\/ дерево разбора выражений \\
+\hline
+\mbox{\tt out}  & {\em root} & -\/ индекс корня дерева разбора выражений \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true -\/ при успешном ввводе, false -\/ иначе 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em U\+N\+K\+N\+O\+W\+N\+\_\+\+F\+I\+L\+E\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON} & -\/ неверно указано расширение входного файла \\
+\hline
+{\em I\+N\+P\+U\+T\+\_\+\+F\+I\+L\+E\+\_\+\+N\+O\+T\+\_\+\+E\+X\+I\+ST} & -\/ не существует или не найден входной файл \\
+\hline
+{\em W\+R\+O\+N\+G\+\_\+\+D\+A\+T\+A\+\_\+\+F\+O\+R\+M\+AT} & -\/ неверный формат данных во входном файле \\
+\hline
+{\em T\+R\+E\+E\+\_\+\+S\+I\+Z\+E\+\_\+\+O\+U\+T\+\_\+\+O\+F\+\_\+\+R\+A\+N\+GE} & -\/ размер дерева во входном файле вне поддерживаемого диапазона \\
+\hline
+\end{DoxyExceptions}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{_open_brackets_8cpp_a797b21a870af459209e0b303375490e6_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{_open_brackets_8cpp_a797b21a870af459209e0b303375490e6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a25881c5367e2db6534a50cd6b17ed6a1}\label{_open_brackets_8cpp_a25881c5367e2db6534a50cd6b17ed6a1}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!is\+Equal\+Trees@{is\+Equal\+Trees}}
+\index{is\+Equal\+Trees@{is\+Equal\+Trees}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{is\+Equal\+Trees()}{isEqualTrees()}}
+{\footnotesize\ttfamily bool is\+Equal\+Trees (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$}]{first\+Tree,  }\item[{int}]{root\+Of\+First\+Tree,  }\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$}]{second\+Tree,  }\item[{int}]{root\+Of\+Second\+Tree }\end{DoxyParamCaption})}
+
+
+
+Сравнить два дерева между собой 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em first\+Tree} & -\/ первое дерево \\
+\hline
+\mbox{\tt in}  & {\em root\+Of\+First\+Tree} & -\/ индекс корневого узла первого дерева \\
+\hline
+\mbox{\tt in}  & {\em second\+Tree} & -\/ второе дерево \\
+\hline
+\mbox{\tt in}  & {\em root\+Of\+Second\+Tree} & -\/ индекс корневого узла второго дерева \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true -\/ если деревья совпадают, false -\/ если деревья разные 
+\end{DoxyReturn}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=153pt]{_open_brackets_8cpp_a25881c5367e2db6534a50cd6b17ed6a1_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{_open_brackets_8cpp_a25881c5367e2db6534a50cd6b17ed6a1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{_open_brackets_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!main@{main}}
+\index{main@{main}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a18dcaf2e91cb700bc12aae6fd594f0e8}\label{_open_brackets_8cpp_a18dcaf2e91cb700bc12aae6fd594f0e8}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!open\+Brackets@{open\+Brackets}}
+\index{open\+Brackets@{open\+Brackets}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{open\+Brackets()}{openBrackets()}}
+{\footnotesize\ttfamily void open\+Brackets (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int}]{current\+Node }\end{DoxyParamCaption})}
+
+
+
+Раскрыть скобки в заданном выражении 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em current\+Node} & -\/ индекс узла дерева с которого следует раскрывать скобки \\
+\hline
+\mbox{\tt out}  & {\em tree} & -\/ дерево разбора выражений \\
+\hline
+\end{DoxyParams}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_open_brackets_8cpp_a18dcaf2e91cb700bc12aae6fd594f0e8_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{_open_brackets_8cpp_a18dcaf2e91cb700bc12aae6fd594f0e8_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a7eb4dce1633fdd03c97d7fd46f02089f}\label{_open_brackets_8cpp_a7eb4dce1633fdd03c97d7fd46f02089f}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!output\+Tree@{output\+Tree}}
+\index{output\+Tree@{output\+Tree}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{output\+Tree()}{outputTree()}}
+{\footnotesize\ttfamily bool output\+Tree (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]},  }\item[{ofstream \&}]{fout,  }\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int \&}]{current }\end{DoxyParamCaption})}
+
+
+
+Вывести дерево разбора выражений 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em argc} & -\/ аргумент командной строки \\
+\hline
+\mbox{\tt in}  & {\em argv\mbox{[}$\,$\mbox{]}} & -\/ аргументы командной строки \\
+\hline
+\mbox{\tt in}  & {\em tree} & -\/ дерево разбора выражений \\
+\hline
+\mbox{\tt in}  & {\em current} & -\/ индекс вершины, с которой производить вывод дерева \\
+\hline
+\mbox{\tt out}  & {\em fout} & -\/ выходной поток \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Возвращает}
+true -\/ при успешном выводе, false -\/ иначе 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Исключения}
+{\em U\+N\+K\+N\+O\+W\+N\+\_\+\+F\+I\+L\+E\+\_\+\+E\+X\+T\+E\+N\+S\+I\+ON} & -\/ неверно указано расширение выходного файла \\
+\hline
+{\em O\+U\+T\+P\+U\+T\+\_\+\+F\+I\+L\+E\+\_\+\+C\+R\+E\+A\+T\+I\+O\+N\+\_\+\+F\+A\+I\+L\+ED} & -\/ невозможно создать выходной файл \\
+\hline
+\end{DoxyExceptions}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{_open_brackets_8cpp_a7eb4dce1633fdd03c97d7fd46f02089f_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{_open_brackets_8cpp_a7eb4dce1633fdd03c97d7fd46f02089f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{_open_brackets_8cpp_a61492c3970be2433213dcd7344c27426}\label{_open_brackets_8cpp_a61492c3970be2433213dcd7344c27426}} 
+\index{Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}!replace\+Tree@{replace\+Tree}}
+\index{replace\+Tree@{replace\+Tree}!Open\+Brackets.\+cpp@{Open\+Brackets.\+cpp}}
+\subsubsection{\texorpdfstring{replace\+Tree()}{replaceTree()}}
+{\footnotesize\ttfamily void replace\+Tree (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{struct_node}{Node}} $>$ \&}]{tree,  }\item[{int}]{current\+Node,  }\item[{string}]{operation }\end{DoxyParamCaption})}
+
+
+
+Перестроить часть дерева ниже текущего узла в соответствии с операцией 
+
+
+\begin{DoxyParams}[1]{Аргументы}
+\mbox{\tt in}  & {\em current\+Node} & -\/ индекс узла дерева с которого следует перестраивать дерево \\
+\hline
+\mbox{\tt in}  & {\em operation} & -\/ операция текущего узла \\
+\hline
+\mbox{\tt out}  & {\em tree} & -\/ дерево разбора выражений \\
+\hline
+\end{DoxyParams}
+Граф вызовов\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=249pt]{_open_brackets_8cpp_a61492c3970be2433213dcd7344c27426_cgraph}
+\end{center}
+\end{figure}
+Граф вызова функции\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{_open_brackets_8cpp_a61492c3970be2433213dcd7344c27426_icgraph}
+\end{center}
+\end{figure}
